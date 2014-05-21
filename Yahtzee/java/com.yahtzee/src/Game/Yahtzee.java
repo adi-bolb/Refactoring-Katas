@@ -2,6 +2,10 @@ package Game;
 
 public class Yahtzee {
 
+    public static final int ONE = 1;
+    public static final int TWO = 2;
+    public static final int THREE = 3;
+
     public static int chance(int d1, int d2, int d3, int d4, int d5)
     {
         int total = 0;
@@ -25,38 +29,28 @@ public class Yahtzee {
     }
 
     public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        int one = 1;
-        if (d1 == one) sum +=1;
-        if (d2 == one) sum +=1;
-        if (d3 == one) sum +=1;
-        if (d4 == one) sum +=1;
-        if (d5 == one) sum +=1;
-
-        return sum;
+        int additionFactor = 1;
+        return computeSum(d1, d2, d3, d4, d5, additionFactor, ONE);
     }
 
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        int two = 2;
-        if (d1 == two) sum += 2;
-        if (d2 == two) sum += 2;
-        if (d3 == two) sum += 2;
-        if (d4 == two) sum += 2;
-        if (d5 == two) sum += 2;
-        return sum;
+        int additionFactor = 2;
+        return computeSum(d1, d2, d3, d4, d5, additionFactor, TWO);
     }
 
     public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;    
-        s = 0;
-        int three = 3;
-        if (d1 == three) s += 3;
-        if (d2 == three) s += 3;
-        if (d3 == three) s += 3;
-        if (d4 == three) s += 3;
-        if (d5 == three) s += 3;
-        return s;
+        int additionFactor = 3;
+        return computeSum(d1, d2, d3, d4, d5, additionFactor, THREE);
+    }
+
+    private static int computeSum(int d1, int d2, int d3, int d4, int d5, int additionFactor, int comparator) {
+        int sum = 0;
+        if (d1 == comparator) sum += additionFactor;
+        if (d2 == comparator) sum += additionFactor;
+        if (d3 == comparator) sum += additionFactor;
+        if (d4 == comparator) sum += additionFactor;
+        if (d5 == comparator) sum += additionFactor;
+        return sum;
     }
 
     protected int[] dice;
