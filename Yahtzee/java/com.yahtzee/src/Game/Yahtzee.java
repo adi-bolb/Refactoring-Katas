@@ -5,6 +5,8 @@ public class Yahtzee {
     public static final int ONE = 1;
     public static final int TWO = 2;
     public static final int THREE = 3;
+    public static final int FOUR = 4;
+    public static final int FIVE = 5;
 
     public static int chance(int d1, int d2, int d3, int d4, int d5)
     {
@@ -53,6 +55,34 @@ public class Yahtzee {
         return sum;
     }
 
+    public int fours()
+    {
+        int additionFactor = 4;
+        int comparator = FOUR;
+        int sum= 0;
+        int length = 5;
+        for (int iterator = 0; iterator != length; iterator++) {
+            if (dice[iterator] == comparator) {
+                sum += additionFactor;
+            }
+        }
+        return sum;
+    }
+
+    public int fives()
+    {
+        int additionFactor = 5;
+        int comparator = FIVE;
+        int sum = 0;
+        int length = dice.length;
+        for (int iterator = 0; iterator < length; iterator++) {
+            if (dice[iterator] == comparator) {
+                sum += additionFactor;
+            }
+        }
+        return sum;
+    }
+
     protected int[] dice;
     public Yahtzee(int d1, int d2, int d3, int d4, int _5)
     {
@@ -62,28 +92,6 @@ public class Yahtzee {
         dice[2] = d3;
         dice[3] = d4;
         dice[4] = _5;
-    }
-
-    public int fours()
-    {
-        int sum;    
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
-    }
-
-    public int fives()
-    {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++) 
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
     }
 
     public int sixes()
