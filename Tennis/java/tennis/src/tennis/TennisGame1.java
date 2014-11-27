@@ -1,7 +1,11 @@
 package tennis;
 
 public class TennisGame1 implements TennisGame {
-    
+
+    public static final String LOVE = "Love";
+    public static final String FIFTEEN = "Fifteen";
+    public static final String THIRTY = "Thirty";
+    public static final String FORTY = "Forty";
     private int m_score1 = 0;
     private int m_score2 = 0;
     private String player1Name = "player1";
@@ -27,19 +31,19 @@ public class TennisGame1 implements TennisGame {
             switch (m_score1)
             {
                 case 0:
-                        score = "Love-All";
+                    score = LOVE + "-All";
                     break;
                 case 1:
-                        score = "Fifteen-All";
+                    score = FIFTEEN + "-All";
                     break;
                 case 2:
-                        score = "Thirty-All";
+                    score = THIRTY + "-All";
                     break;
                 case 3:
-                        score = "Forty-All";
+                    score = FORTY +"-All";
                     break;
                 default:
-                        score = "Deuce";
+                    score = "Deuce";
                     break;
                 
             }
