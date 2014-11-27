@@ -6,6 +6,7 @@ public class TennisGame1 implements TennisGame {
     public static final String FIFTEEN = "Fifteen";
     public static final String THIRTY = "Thirty";
     public static final String FORTY = "Forty";
+    public static final String ALL = "All";
     private int m_score1 = 0;
     private int m_score2 = 0;
     private String player1Name = "player1";
@@ -31,16 +32,16 @@ public class TennisGame1 implements TennisGame {
             switch (m_score1)
             {
                 case 0:
-                    score = LOVE + "-All";
+                    score = LOVE + "-"+ ALL;
                     break;
                 case 1:
-                    score = FIFTEEN + "-All";
+                    score = FIFTEEN + "-"+ ALL;
                     break;
                 case 2:
-                    score = THIRTY + "-All";
+                    score = THIRTY + "-"+ ALL;
                     break;
                 case 3:
-                    score = FORTY +"-All";
+                    score = FORTY +"-"+ ALL;
                     break;
                 default:
                     score = "Deuce";
