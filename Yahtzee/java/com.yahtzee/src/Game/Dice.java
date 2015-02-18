@@ -1,13 +1,23 @@
 package Game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Dice {
     private final int d1;
     private final int d2;
     private final int d3;
     private final int d4;
     private final int d5;
+    private List<Integer> diceValues = new ArrayList<Integer>();
 
     public Dice(int d1, int d2, int d3, int d4, int d5) {
+        diceValues.add(d1);
+        diceValues.add(d2);
+        diceValues.add(d3);
+        diceValues.add(d4);
+        diceValues.add(d5);
+
         this.d1 = d1;
         this.d2 = d2;
         this.d3 = d3;
@@ -15,23 +25,7 @@ public class Dice {
         this.d5 = d5;
     }
 
-    public int getD1() {
-        return d1;
-    }
-
-    public int getD2() {
-        return d2;
-    }
-
-    public int getD3() {
-        return d3;
-    }
-
-    public int getD4() {
-        return d4;
-    }
-
-    public int getD5() {
-        return d5;
+    public Integer getDice(int index){
+        return diceValues.get(index-1);
     }
 }

@@ -142,11 +142,11 @@ public class Yahtzee {
 
     private static int fourOfAKind(Dice dice1) {
         int[] tallies = new int[6];
-        tallies[dice1.getD1() -1]++;
-        tallies[dice1.getD2() -1]++;
-        tallies[dice1.getD3() -1]++;
-        tallies[dice1.getD4() -1]++;
-        tallies[dice1.getD5() -1]++;
+        tallies[dice1.getDice(1) -1]++;
+        tallies[dice1.getDice(2) -1]++;
+        tallies[dice1.getDice(3) -1]++;
+        tallies[dice1.getDice(4) -1]++;
+        tallies[dice1.getDice(5) -1]++;
         for (int i = 0; i < 6; i++)
             if (tallies[i] == 4)
                 return (i+1) * 4;
