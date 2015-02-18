@@ -25,7 +25,8 @@ public class Dice {
         this.d5 = d5;
     }
 
-    public Integer getDice(int index){
-        return diceValues.get(index-1);
+    public Integer getDice(int oneBasedIndex){
+        int zeroBasedIndex = oneBasedIndex - 1;
+        return diceValues.get(zeroBasedIndex);
     }
 }
