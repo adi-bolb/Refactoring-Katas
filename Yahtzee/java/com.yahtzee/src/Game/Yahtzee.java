@@ -165,8 +165,7 @@ public class Yahtzee {
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5)
     {
-        int[] tallies;
-        tallies = new int[6];
+        int[] tallies = new int[6];
         tallies[d1-1] += 1;
         tallies[d2-1] += 1;
         tallies[d3-1] += 1;
@@ -183,8 +182,7 @@ public class Yahtzee {
 
     public static int largeStraight(int d1, int d2, int d3, int d4, int d5)
     {
-        int[] tallies;
-        tallies = new int[6];
+        int[] tallies = new int[6];
         tallies[d1-1] += 1;
         tallies[d2-1] += 1;
         tallies[d3-1] += 1;
