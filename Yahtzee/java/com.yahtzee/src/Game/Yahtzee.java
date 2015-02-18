@@ -137,8 +137,7 @@ public class Yahtzee {
 
     public static int four_of_a_kind(int d1, int d2, int d3, int d4, int d5)
     {
-        int[] tallies;
-        tallies = new int[6];
+        int[] tallies = new int[6];
         tallies[d1-1]++;
         tallies[d2-1]++;
         tallies[d3-1]++;
@@ -152,8 +151,7 @@ public class Yahtzee {
 
     public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5)
     {
-        int[] t;
-        t = new int[6];
+        int[] t = new int[6];
         t[d1-1]++;
         t[d2-1]++;
         t[d3-1]++;
