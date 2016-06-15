@@ -7,7 +7,13 @@ public class TennisGame3 implements TennisGame {
 
 	def getScore() {
 		String scoreAsText
-		if (playerOnePoints < 4 && playerTwoPoints < 4 && !(playerOnePoints + playerTwoPoints == 6)) {
+
+        def playerOneDidNotWin = playerOnePoints < 4
+        def playerTwoDidNotWin = playerTwoPoints < 4
+        def gameNotFinished = playerOneDidNotWin && playerTwoDidNotWin
+        def scoreSmallerThanForty = !(playerOnePoints + playerTwoPoints == 6)
+
+        if (gameNotFinished && scoreSmallerThanForty) {
 			String[] textOfScores = ["Love", "Fifteen", "Thirty", "Forty"]
 			scoreAsText = textOfScores[playerOnePoints]
 			return (playerOnePoints == playerTwoPoints) ? scoreAsText + "-All" : scoreAsText + "-" + textOfScores[playerTwoPoints]
