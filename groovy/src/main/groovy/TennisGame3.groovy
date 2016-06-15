@@ -6,18 +6,16 @@ public class TennisGame3 implements TennisGame {
 	def playerTwoName
 
 	def getScore() {
-		String scoreAsText
-
         if (noDeuceYet()) {
 			String[] textOfScores = ["Love", "Fifteen", "Thirty", "Forty"]
-			scoreAsText = textOfScores[playerOnePoints]
+			def scoreAsText = textOfScores[playerOnePoints]
 
             return equalPointsForPlayers() ? scoreAsText + "-All" : scoreAsText + "-" + textOfScores[playerTwoPoints]
 		} else {
             if (equalPointsForPlayers())
 				return "Deuce"
-			scoreAsText = playerOneHasMorePoints() ? playerOneName : playerTwoName
-			return ((playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1) ? "Advantage " + scoreAsText : "Win for " + scoreAsText
+			def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
+			return ((playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1) ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
 		}
 	}
 
