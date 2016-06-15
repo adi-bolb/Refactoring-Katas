@@ -18,20 +18,20 @@ public class TennisGame3 implements TennisGame {
         return onePlayerHasOnePointLead() ? getAdvantageScore() : getWinnerScore()
 	}
 
+    private getPlayerNameWithMorePoints() {
+        playerOneHasMorePoints() ? playerOneName : playerTwoName
+    }
+
+    private static String getDeuceScore() {
+        "Deuce"
+    }
+
     private String getWinnerScore() {
         "Win for " + getPlayerNameWithMorePoints()
     }
 
     private String getAdvantageScore() {
         "Advantage " + getPlayerNameWithMorePoints()
-    }
-
-    private getPlayerNameWithMorePoints() {
-        playerOneHasMorePoints() ? playerOneName : playerTwoName
-    }
-
-    private String getDeuceScore() {
-        "Deuce"
     }
 
     private String getScoreWhenNotEqual(Integer playerOnePoints, Integer playerTwoPoints) {
@@ -46,6 +46,10 @@ public class TennisGame3 implements TennisGame {
         String[] textOfScores2 = ["Love", "Fifteen", "Thirty", "Forty"]
         def playerTwoScore = textOfScores2[numberOfPoints]
         playerTwoScore
+    }
+
+    private boolean scoreSmallerThanForty() {
+        !(playerOnePoints + playerTwoPoints == 6)
     }
 
 
@@ -63,9 +67,6 @@ public class TennisGame3 implements TennisGame {
         reachedOnlyMaximumTheFirstDeuce() && scoreSmallerThanForty()
     }
 
-    private boolean scoreSmallerThanForty() {
-        !(playerOnePoints + playerTwoPoints == 6)
-    }
 
     private boolean reachedOnlyMaximumTheFirstDeuce() {
         def playerOneDidNotWin = playerOnePoints < 4
