@@ -7,7 +7,9 @@ public class TennisGame3 implements TennisGame {
 
 	def getScore() {
         if (noDeuceYet()) {
-            return equalPointsForPlayers() ? getScoreFor(playerOnePoints) + "-All" : getScoreFor(playerOnePoints) + "-" + getScoreFor(playerTwoPoints)
+            String equalScore = getEqualScore(playerOnePoints)
+            String differentScores = getScoreWhenNotEqual(playerOnePoints, playerTwoPoints)
+            return equalPointsForPlayers() ? equalScore : differentScores
 		}
 
         if (equalPointsForPlayers())
@@ -16,6 +18,14 @@ public class TennisGame3 implements TennisGame {
         def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
         return onePlayerHasOnePointLead() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
 	}
+
+    private String getScoreWhenNotEqual(Integer playerOnePoints, Integer playerTwoPoints) {
+        getScoreFor(playerOnePoints) + "-" + getScoreFor(playerTwoPoints)
+    }
+
+    private String getEqualScore(Integer numberOfPoints) {
+        getScoreFor(numberOfPoints) + "-All"
+    }
 
     private getScoreFor(int numberOfPoints) {
         String[] textOfScores2 = ["Love", "Fifteen", "Thirty", "Forty"]
