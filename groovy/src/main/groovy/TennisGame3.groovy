@@ -15,9 +15,13 @@ public class TennisGame3 implements TennisGame {
             if (equalPointsForPlayers())
 				return "Deuce"
 			def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
-			return ((playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1) ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
+			return onePlayerHasAdvantage() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
 		}
 	}
+
+    private boolean onePlayerHasAdvantage() {
+        (playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1
+    }
 
     private boolean playerOneHasMorePoints() {
         playerOnePoints > playerTwoPoints
