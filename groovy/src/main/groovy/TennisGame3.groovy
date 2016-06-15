@@ -13,11 +13,15 @@ public class TennisGame3 implements TennisGame {
 		}
 
         if (equalPointsForPlayers())
-            return "Deuce"
+            return getDeuceScore()
 
         def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
         return onePlayerHasOnePointLead() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
 	}
+
+    private String getDeuceScore() {
+        "Deuce"
+    }
 
     private String getScoreWhenNotEqual(Integer playerOnePoints, Integer playerTwoPoints) {
         getScoreFor(playerOnePoints) + "-" + getScoreFor(playerTwoPoints)
