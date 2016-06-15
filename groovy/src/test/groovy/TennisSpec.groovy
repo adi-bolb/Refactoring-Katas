@@ -14,7 +14,7 @@ public class TennisSpec extends Specification {
 	def setup() {
 		game1 = new TennisGame1(player1Name: "player1", player2Name: "player2")
 		game2 = new TennisGame2(player1Name: "player1", player2Name: "player2")
-		game3 = new TennisGame3(p1N: "player1", p2N: "player2")
+		game3 = new TennisGame3(playerOneName: "player1", playerTwoName: "player2")
 
 	}
 

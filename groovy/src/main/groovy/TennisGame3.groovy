@@ -2,8 +2,8 @@ public class TennisGame3 implements TennisGame {
 
 	private int playerTwoPoints
 	private int playerOnePoints
-	def p1N
-	def p2N
+	def playerOneName
+	def playerTwoName
 
 	def getScore() {
 		String scoreAsText
@@ -16,10 +16,14 @@ public class TennisGame3 implements TennisGame {
 		} else {
             if (equalPointsForPlayers())
 				return "Deuce"
-			scoreAsText = playerOnePoints > playerTwoPoints ? p1N : p2N
+			scoreAsText = playerOneHasMorePoints() ? playerOneName : playerTwoName
 			return ((playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1) ? "Advantage " + scoreAsText : "Win for " + scoreAsText
 		}
 	}
+
+    private boolean playerOneHasMorePoints() {
+        playerOnePoints > playerTwoPoints
+    }
 
     private boolean noDeuceYet() {
         reachedOnlyMaximumTheFirstDeuce() && scoreSmallerThanForty()
