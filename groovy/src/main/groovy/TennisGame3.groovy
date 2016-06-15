@@ -8,7 +8,7 @@ public class TennisGame3 implements TennisGame {
 	def getScore() {
 		String scoreAsText
 
-        if (reachedOnlyMaximumTheFirstDeuce() && scoreSmallerThanForty()) {
+        if (neitherPlayerHitDeuce()) {
 			String[] textOfScores = ["Love", "Fifteen", "Thirty", "Forty"]
 			scoreAsText = textOfScores[playerOnePoints]
 
@@ -20,6 +20,10 @@ public class TennisGame3 implements TennisGame {
 			return ((playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1) ? "Advantage " + scoreAsText : "Win for " + scoreAsText
 		}
 	}
+
+    private boolean neitherPlayerHitDeuce() {
+        reachedOnlyMaximumTheFirstDeuce() && scoreSmallerThanForty()
+    }
 
     private boolean scoreSmallerThanForty() {
         !(playerOnePoints + playerTwoPoints == 6)
