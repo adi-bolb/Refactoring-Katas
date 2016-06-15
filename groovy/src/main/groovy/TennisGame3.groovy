@@ -8,12 +8,13 @@ public class TennisGame3 implements TennisGame {
 	def getScore() {
         if (noDeuceYet()) {
             return equalPointsForPlayers() ? getScoreFor(playerOnePoints) + "-All" : getScoreFor(playerOnePoints) + "-" + getScoreFor(playerTwoPoints)
-		} else {
-            if (equalPointsForPlayers())
-				return "Deuce"
-			def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
-			return onePlayerHasOnePointLead() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
 		}
+
+        if (equalPointsForPlayers())
+            return "Deuce"
+
+        def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
+        return onePlayerHasOnePointLead() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
 	}
 
     private getScoreFor(int numberOfPoints) {
