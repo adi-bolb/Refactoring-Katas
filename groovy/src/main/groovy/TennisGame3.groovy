@@ -22,15 +22,13 @@ public class TennisGame3 implements TennisGame {
 	}
 
     private boolean scoreSmallerThanForty() {
-        def scoreSmallerThanForty = !(playerOnePoints + playerTwoPoints == 6)
-        scoreSmallerThanForty
+        !(playerOnePoints + playerTwoPoints == 6)
     }
 
     private boolean gameNotFinished() {
         def playerOneDidNotWin = playerOnePoints < 4
         def playerTwoDidNotWin = playerTwoPoints < 4
-        def gameNotFinished = playerOneDidNotWin && playerTwoDidNotWin
-        gameNotFinished
+        playerOneDidNotWin && playerTwoDidNotWin
     }
 
     private boolean equalPointsForPlayers() {
