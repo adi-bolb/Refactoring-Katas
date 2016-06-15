@@ -8,9 +8,10 @@ public class TennisGame3 implements TennisGame {
 	def getScore() {
         if (noDeuceYet()) {
 			String[] textOfScores = ["Love", "Fifteen", "Thirty", "Forty"]
-			def scoreAsText = textOfScores[playerOnePoints]
+			def playerOneScore = textOfScores[playerOnePoints]
+            def playerTwoScore = textOfScores[playerTwoPoints]
 
-            return equalPointsForPlayers() ? scoreAsText + "-All" : scoreAsText + "-" + textOfScores[playerTwoPoints]
+            return equalPointsForPlayers() ? playerOneScore + "-All" : playerOneScore + "-" + playerTwoScore
 		} else {
             if (equalPointsForPlayers())
 				return "Deuce"
