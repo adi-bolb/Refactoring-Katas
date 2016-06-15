@@ -15,9 +15,20 @@ public class TennisGame3 implements TennisGame {
         if (equalPointsForPlayers())
             return getDeuceScore()
 
-        def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
-        return onePlayerHasOnePointLead() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
+        return onePlayerHasOnePointLead() ? getAdvantageScore() : getWinnerScore()
 	}
+
+    private String getWinnerScore() {
+        "Win for " + getPlayerNameWithMorePoints()
+    }
+
+    private String getAdvantageScore() {
+        "Advantage " + getPlayerNameWithMorePoints()
+    }
+
+    private getPlayerNameWithMorePoints() {
+        playerOneHasMorePoints() ? playerOneName : playerTwoName
+    }
 
     private String getDeuceScore() {
         "Deuce"
