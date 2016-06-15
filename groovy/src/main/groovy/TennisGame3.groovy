@@ -16,12 +16,14 @@ public class TennisGame3 implements TennisGame {
             if (equalPointsForPlayers())
 				return "Deuce"
 			def playerNameWithMorePoints = playerOneHasMorePoints() ? playerOneName : playerTwoName
-			return onePlayerHasAdvantage() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
+			return onePlayerHasOnePointLead() ? "Advantage " + playerNameWithMorePoints : "Win for " + playerNameWithMorePoints
 		}
 	}
 
-    private boolean onePlayerHasAdvantage() {
-        (playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1
+    private boolean onePlayerHasOnePointLead() {
+        def differenceOfPoints = playerOnePoints - playerTwoPoints
+        def onlyOnePointLead = Math.pow(differenceOfPoints, 2) == 1
+        onlyOnePointLead
     }
 
     private boolean playerOneHasMorePoints() {
