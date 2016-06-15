@@ -8,12 +8,7 @@ public class TennisGame3 implements TennisGame {
 	def getScore() {
 		String scoreAsText
 
-        def playerOneDidNotWin = playerOnePoints < 4
-        def playerTwoDidNotWin = playerTwoPoints < 4
-        def gameNotFinished = playerOneDidNotWin && playerTwoDidNotWin
-        def scoreSmallerThanForty = !(playerOnePoints + playerTwoPoints == 6)
-
-        if (gameNotFinished && scoreSmallerThanForty) {
+        if (gameNotFinished() && scoreSmallerThanForty()) {
 			String[] textOfScores = ["Love", "Fifteen", "Thirty", "Forty"]
 			scoreAsText = textOfScores[playerOnePoints]
 
@@ -25,6 +20,18 @@ public class TennisGame3 implements TennisGame {
 			return ((playerOnePoints - playerTwoPoints) * (playerOnePoints - playerTwoPoints) == 1) ? "Advantage " + scoreAsText : "Win for " + scoreAsText
 		}
 	}
+
+    private boolean scoreSmallerThanForty() {
+        def scoreSmallerThanForty = !(playerOnePoints + playerTwoPoints == 6)
+        scoreSmallerThanForty
+    }
+
+    private boolean gameNotFinished() {
+        def playerOneDidNotWin = playerOnePoints < 4
+        def playerTwoDidNotWin = playerTwoPoints < 4
+        def gameNotFinished = playerOneDidNotWin && playerTwoDidNotWin
+        gameNotFinished
+    }
 
     private boolean equalPointsForPlayers() {
         playerOnePoints == playerTwoPoints
