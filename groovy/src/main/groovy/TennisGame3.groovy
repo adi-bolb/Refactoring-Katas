@@ -4,16 +4,17 @@ public class TennisGame3 implements TennisGame {
 	private int playerOnePoints
 	def playerOneName
 	def playerTwoName
+    def score;
 
 	def getScore() {
         if (noDeuceYet()) {
-            String equalScore = Score.getEqualScore(playerOnePoints)
-            String differentScores = Score.getScoreWhenNotEqual(playerOnePoints, playerTwoPoints)
+            String equalScore = score.getEqualScore(playerOnePoints)
+            String differentScores = score.getScoreWhenNotEqual(playerOnePoints, playerTwoPoints)
             return equalPointsForPlayers() ? equalScore : differentScores
 		}
 
         if (equalPointsForPlayers())
-            return Score.getDeuceScore()
+            return score.getDeuceScore()
 
         return onePlayerHasOnePointLead() ? getAdvantageScore() : getWinnerScore()
 	}
