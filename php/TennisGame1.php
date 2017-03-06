@@ -9,7 +9,7 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_TWO_POINTS = 2;
     const GAME_SCORE_THREE_POINTS = 3;
     const GAME_SCORE_FOUR_POINTS = 4;
-    const SCORE_SEPARATOR = "-";
+    const GAME_SCORE_SEPARATOR = "-";
     const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
     const GAME_SCORE_MESSAGE_SPACE = " ";
     const GAME_SCORE_MESSAGE_WINNER = "Win for";
@@ -46,16 +46,16 @@ class TennisGame1 implements TennisGame
             switch ($this->playerOnePoints)
             {
                 case self::GAME_SCORE_NO_POINTS:
-                    $gameScore = self::GAME_SCORE_LOVE . self::SCORE_SEPARATOR . self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_LOVE . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_ONE_POINT:
-                    $gameScore = self::GAME_SCORE_FIFTEEN .self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_FIFTEEN .self::GAME_SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_TWO_POINTS:
-                    $gameScore = self::GAME_SCORE_THIRTY .self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_THIRTY .self::GAME_SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_THREE_POINTS:
-                    $gameScore = self::GAME_SCORE_FORTY .self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_FORTY .self::GAME_SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 default:
                     $gameScore = self::GAME_SCORE_DEUCE;
@@ -77,7 +77,7 @@ class TennisGame1 implements TennisGame
             for ($i=1; $i<3; $i++)
             {
                 if ($i==1) $tempScore = $this->playerOnePoints;
-                else { $gameScore.= self::SCORE_SEPARATOR; $tempScore = $this->playerTwoPoints;}
+                else { $gameScore.= self::GAME_SCORE_SEPARATOR; $tempScore = $this->playerTwoPoints;}
                 switch($tempScore)
                 {
                     case self::GAME_SCORE_NO_POINTS:
