@@ -3,8 +3,8 @@ require_once './TennisGame.php';
 
 class TennisGame1 implements TennisGame
 {
-    private $playerOneScore = 0;
-    private $playerTwoScore = 0;
+    private $playerOnePoints = 0;
+    private $playerTwoPoints = 0;
     private $playerOneName;
     private $playerTwoName;
 
@@ -17,18 +17,18 @@ class TennisGame1 implements TennisGame
     public function wonPoint($playerName)
     {
         if ($playerName == "player1")
-            $this->playerOneScore += 1;
+            $this->playerOnePoints += 1;
         else
-            $this->playerTwoScore += 1;
+            $this->playerTwoPoints += 1;
     }
 
     public function getScore()
     {
         $score = "";
         $tempScore=0;
-        if ($this->playerOneScore==$this->playerTwoScore)
+        if ($this->playerOnePoints==$this->playerTwoPoints)
         {
-            switch ($this->playerOneScore)
+            switch ($this->playerOnePoints)
             {
                 case 0:
                     $score = "Love-All";
@@ -47,9 +47,9 @@ class TennisGame1 implements TennisGame
                     break;
             }
         }
-        else if ($this->playerOneScore>=4 || $this->playerTwoScore>=4)
+        else if ($this->playerOnePoints>=4 || $this->playerTwoPoints>=4)
         {
-            $minusResult = $this->playerOneScore - $this->playerTwoScore;
+            $minusResult = $this->playerOnePoints - $this->playerTwoPoints;
             if ($minusResult==1) $score = "Advantage player1";
             else if ($minusResult ==-1) $score = "Advantage player2";
             else if ($minusResult>=2) $score = "Win for player1";
@@ -59,8 +59,8 @@ class TennisGame1 implements TennisGame
         {
             for ($i=1; $i<3; $i++)
             {
-                if ($i==1) $tempScore = $this->playerOneScore;
-                else { $score.="-"; $tempScore = $this->playerTwoScore;}
+                if ($i==1) $tempScore = $this->playerOnePoints;
+                else { $score.="-"; $tempScore = $this->playerTwoPoints;}
                 switch($tempScore)
                 {
                     case 0:
