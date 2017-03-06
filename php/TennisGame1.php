@@ -20,10 +20,10 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_FORTY = "Forty";
     const GAME_SCORE_DEUCE = "Deuce";
 
-    private $playerOnePoints = 0;
-    private $playerTwoPoints = 0;
     private $playerOneName;
+    private $playerOnePoints = 0;
     private $playerTwoName;
+    private $playerTwoPoints = 0;
 
     public function TennisGame1($playerOneName, $playerTwoName)
     {
