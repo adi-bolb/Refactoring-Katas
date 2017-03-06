@@ -32,16 +32,7 @@ class TennisGame1 implements TennisGame
 
     public function wonPoint($playerName)
     {
-        $this->incrementPointsForPlayerOne($playerName);
-        $this->incrementPointsForPlayerTwo($playerName);
-    }
-
-    private function incrementPointsForPlayerOne($playerName){
         $this->incrementPointsForPlayer($playerName, $this->playerOne);
-    }
-
-    private function incrementPointsForPlayerTwo($playerName)
-    {
         $this->incrementPointsForPlayer($playerName, $this->playerTwo);
     }
 
