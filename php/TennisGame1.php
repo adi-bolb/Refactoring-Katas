@@ -21,10 +21,10 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_DEUCE = "Deuce";
 
     private $playerOneName;
-    private $playerOnePoints = 0;
-
     function getPlayerOneName(){ return $this->playerOneName; }
     function setPlayerOneName($name){ $this->playerOneName = $name; }
+
+    private $playerOnePoints = 0;
 
     private $playerTwoName;
     private $playerTwoPoints = 0;
@@ -42,7 +42,7 @@ class TennisGame1 implements TennisGame
     }
 
     private function incrementScoreForPlayerOne($playerName){
-        if ($playerName == $this->playerOneName)
+        if ($playerName == $this->getPlayerOneName())
             $this->playerOnePoints += 1;
     }
 
