@@ -15,8 +15,8 @@ class TennisGame3 implements TennisGame
         $this->p2N = $p2N;
     }
 
-    public function getScore()
-    {
+    public function getGameScore(){
+
         $s='';
         if ($this->p1 < 4 && $this->p2 < 4)
         {
@@ -29,6 +29,12 @@ class TennisGame3 implements TennisGame
             $s = $this->p1 > $this->p2 ? $this->p1N : $this->p2N;
             return (($this->p1-$this->p2)*($this->p1-$this->p2) == 1) ? "Advantage " . $s : "Win for " . $s;
         }
+
+    }
+
+    public function getScore()
+    {
+        return $this->getGameScore();
     }
 
     public function wonPoint($playerName)
