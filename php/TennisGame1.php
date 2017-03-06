@@ -22,12 +22,16 @@ class TennisGame1 implements TennisGame
 
     private $playerOneName;
     private $playerOnePoints = 0;
+
+    function getPlayerOneName(){ return $this->playerOneName; }
+    function setPlayerOneName($name){ $this->playerOneName = $name; }
+
     private $playerTwoName;
     private $playerTwoPoints = 0;
 
     public function TennisGame1($playerOneName, $playerTwoName)
     {
-        $this->playerOneName = $playerOneName;
+        $this->setPlayerOneName($playerOneName);
         $this->playerTwoName = $playerTwoName;
     }
 
