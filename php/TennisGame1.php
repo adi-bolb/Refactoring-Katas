@@ -32,24 +32,26 @@ class TennisGame1 implements TennisGame
 
     public function wonPoint($playerName)
     {
-        $this->incrementScoreForPlayerOne($playerName);
-        $this->incrementScoreForPlayerTwo($playerName);
+        $this->incrementPointsForPlayerOne($playerName);
+        $this->incrementPointsForPlayerTwo($playerName);
     }
 
-    private function incrementScoreForPlayerOne($playerName){
-        if ($playerName == $this->playerOne->getName()) {
-
-            $incrementedPoints = $this->playerOne->getPoints() + 1;
-            $this->playerOne->setPoints($incrementedPoints);
-        }
+    private function incrementPointsForPlayerOne($playerName){
+        $this->incrementPointsForPlayer($playerName, $this->playerOne);
     }
 
-    private function incrementScoreForPlayerTwo($playerName)
+    private function incrementPointsForPlayerTwo($playerName)
     {
-        if ($playerName == $this->playerTwo->getName()) {
-            $incrementedValue = $this->playerTwo->getPoints() + 1;
-            $this->playerTwo->setPoints($incrementedValue);
+        $this->incrementPointsForPlayer($playerName, $this->playerTwo);
+    }
+
+    function incrementPointsForPlayer($playerName, $player){
+        if ($playerName == $player->getName()) {
+
+            $incrementedPoints = $player->getPoints() + 1;
+            $player->setPoints($incrementedPoints);
         }
+
     }
 
     public function getGameScore(){
