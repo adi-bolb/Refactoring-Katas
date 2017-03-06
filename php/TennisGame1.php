@@ -23,8 +23,6 @@ class TennisGame1 implements TennisGame
 
     private $playerOne;
 
-    private $playerOnePoints = 0;
-
     private $playerTwoName;
     private $playerTwoPoints = 0;
 
@@ -41,8 +39,12 @@ class TennisGame1 implements TennisGame
     }
 
     private function incrementScoreForPlayerOne($playerName){
-        if ($playerName == $this->playerOne->getName())
-            $this->playerOnePoints += 1;
+        if ($playerName == $this->playerOne->getName()) {
+
+            $temp = $this->playerOne->getPoints();
+            $temp = $temp + 1;
+            $this->playerOne->setPoints($temp);
+        }
     }
 
     private function incrementScoreForPlayerTwo($playerName){
@@ -52,9 +54,9 @@ class TennisGame1 implements TennisGame
 
     public function getGameScore(){
         $gameScore = "";
-        if ($this->playerOnePoints==$this->playerTwoPoints)
+        if ($this->playerOne->getPoints()==$this->playerTwoPoints)
         {
-            switch ($this->playerOnePoints)
+            switch ($this->playerOne->getPoints())
             {
                 case self::GAME_SCORE_NO_POINTS:
                     $gameScore = self::GAME_SCORE_LOVE . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
@@ -73,11 +75,11 @@ class TennisGame1 implements TennisGame
                     break;
             }
         }
-        else if ($this->playerOnePoints>=self::GAME_SCORE_FOUR_POINTS
+        else if ($this->playerOne->getPoints()>=self::GAME_SCORE_FOUR_POINTS
             || $this->playerTwoPoints>=self::GAME_SCORE_FOUR_POINTS)
         {
 
-            $minusResult = $this->playerOnePoints - $this->playerTwoPoints;
+            $minusResult = $this->playerOne->getPoints()- $this->playerTwoPoints;
             if ($minusResult==1) $gameScore = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player1";
             else if ($minusResult ==-1) $gameScore = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE. "player2";
             else if ($minusResult>=2) $gameScore = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player1";
@@ -87,7 +89,7 @@ class TennisGame1 implements TennisGame
         {
             for ($i=1; $i<3; $i++)
             {
-                if ($i==1) $tempScore = $this->playerOnePoints;
+                if ($i==1) $tempScore = $this->playerOne->getPoints();
                 else { $gameScore.= self::GAME_SCORE_SEPARATOR; $tempScore = $this->playerTwoPoints;}
                 switch($tempScore)
                 {
