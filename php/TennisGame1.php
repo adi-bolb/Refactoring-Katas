@@ -4,7 +4,7 @@ require_once './TennisGame.php';
 class TennisGame1 implements TennisGame
 {
     private $playerOneScore = 0;
-    private $m_score2 = 0;
+    private $playerTwoScore = 0;
     private $player1Name;
     private $player2Name;
 
@@ -19,14 +19,14 @@ class TennisGame1 implements TennisGame
         if ($playerName == "player1")
             $this->playerOneScore += 1;
         else
-            $this->m_score2 += 1;
+            $this->playerTwoScore += 1;
     }
 
     public function getScore()
     {
         $score = "";
         $tempScore=0;
-        if ($this->playerOneScore==$this->m_score2)
+        if ($this->playerOneScore==$this->playerTwoScore)
         {
             switch ($this->playerOneScore)
             {
@@ -47,9 +47,9 @@ class TennisGame1 implements TennisGame
                     break;
             }
         }
-        else if ($this->playerOneScore>=4 || $this->m_score2>=4)
+        else if ($this->playerOneScore>=4 || $this->playerTwoScore>=4)
         {
-            $minusResult = $this->playerOneScore - $this->m_score2;
+            $minusResult = $this->playerOneScore - $this->playerTwoScore;
             if ($minusResult==1) $score = "Advantage player1";
             else if ($minusResult ==-1) $score = "Advantage player2";
             else if ($minusResult>=2) $score = "Win for player1";
@@ -60,7 +60,7 @@ class TennisGame1 implements TennisGame
             for ($i=1; $i<3; $i++)
             {
                 if ($i==1) $tempScore = $this->playerOneScore;
-                else { $score.="-"; $tempScore = $this->m_score2;}
+                else { $score.="-"; $tempScore = $this->playerTwoScore;}
                 switch($tempScore)
                 {
                     case 0:
