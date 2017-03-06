@@ -70,7 +70,7 @@ class TennisTest extends PHPUnit_Framework_TestCase
 			if ($i < $this->player2Score)
 				$game->wonPoint("player2");
 		}
-		$this->assertEquals($this->expectedScore, $game->getScore());
+		$this->assertEquals($this->expectedScore, $game->getGameScore());
 	}
 
 	/**
