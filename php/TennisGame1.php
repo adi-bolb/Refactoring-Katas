@@ -24,7 +24,6 @@ class TennisGame1 implements TennisGame
 
     public function getGameScore(){
         $gameScore = "";
-        $tempScore=0;
         if ($this->playerOnePoints==$this->playerTwoPoints)
         {
             switch ($this->playerOnePoints)
