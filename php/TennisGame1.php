@@ -33,7 +33,7 @@ class TennisGame1 implements TennisGame
 
     public function wonPoint($playerName)
     {
-        if ($playerName == "player1")
+        if ($playerName == $this->playerOneName)
             $this->playerOnePoints += 1;
         else
             $this->playerTwoPoints += 1;
