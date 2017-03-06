@@ -13,12 +13,16 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
     const GAME_SCORE_MESSAGE_SPACE = " ";
     const GAME_SCORE_MESSAGE_WINNER = "Win for";
-
     const GAME_SCORE_ALL = "All";
+    const GAME_SCORE_LOVE = "Love";
+    const GAME_SCORE_FIFTEEN = "Fifteen";
+    const GAME_SCORE_THIRTY = "Thirty";
+    const GAME_SCORE_FORTY = "Forty";
+    const GAME_SCORE_DEUCE = "Deuce";
+
     private $playerOnePoints = 0;
     private $playerTwoPoints = 0;
     private $playerOneName;
-
     private $playerTwoName;
 
     public function TennisGame1($playerOneName, $playerTwoName)
@@ -42,19 +46,19 @@ class TennisGame1 implements TennisGame
             switch ($this->playerOnePoints)
             {
                 case self::GAME_SCORE_NO_POINTS:
-                    $gameScore = "Love". self::SCORE_SEPARATOR . self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_LOVE . self::SCORE_SEPARATOR . self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_ONE_POINT:
-                    $gameScore = "Fifteen".self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_FIFTEEN .self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_TWO_POINTS:
-                    $gameScore = "Thirty".self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_THIRTY .self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_THREE_POINTS:
-                    $gameScore = "Forty".self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
+                    $gameScore = self::GAME_SCORE_FORTY .self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 default:
-                    $gameScore = "Deuce";
+                    $gameScore = self::GAME_SCORE_DEUCE;
                     break;
             }
         }
@@ -77,16 +81,16 @@ class TennisGame1 implements TennisGame
                 switch($tempScore)
                 {
                     case self::GAME_SCORE_NO_POINTS:
-                        $gameScore.="Love";
+                        $gameScore.= self::GAME_SCORE_LOVE;
                         break;
                     case self::GAME_SCORE_ONE_POINT:
-                        $gameScore.="Fifteen";
+                        $gameScore.= self::GAME_SCORE_FIFTEEN;
                         break;
                     case self::GAME_SCORE_TWO_POINTS:
-                        $gameScore.="Thirty";
+                        $gameScore.= self::GAME_SCORE_THIRTY;
                         break;
                     case self::GAME_SCORE_THREE_POINTS:
-                        $gameScore.="Forty";
+                        $gameScore.= self::GAME_SCORE_FORTY;
                         break;
                 }
             }
