@@ -22,22 +22,28 @@ class TennisGame1 implements TennisGame
             $this->playerTwoPoints += 1;
     }
 
+    const GAME_SCORE_NO_POINTS = 0;
+    const GAME_SCORE_ONE_POINT = 1;
+    const GAME_SCORE_TWO_POINTS = 2;
+    const GAME_SCORE_THREE_POINTS = 3;
+    const GAME_SCORE_FOUR_POINTS = 4;
+
     public function getGameScore(){
         $gameScore = "";
         if ($this->playerOnePoints==$this->playerTwoPoints)
         {
             switch ($this->playerOnePoints)
             {
-                case 0:
+                case self::GAME_SCORE_NO_POINTS:
                     $gameScore = "Love-All";
                     break;
-                case 1:
+                case self::GAME_SCORE_ONE_POINT:
                     $gameScore = "Fifteen-All";
                     break;
-                case 2:
+                case self::GAME_SCORE_TWO_POINTS:
                     $gameScore = "Thirty-All";
                     break;
-                case 3:
+                case self::GAME_SCORE_THREE_POINTS:
                     $gameScore = "Forty-All";
                     break;
                 default:
@@ -45,7 +51,8 @@ class TennisGame1 implements TennisGame
                     break;
             }
         }
-        else if ($this->playerOnePoints>=4 || $this->playerTwoPoints>=4)
+        else if ($this->playerOnePoints>=self::GAME_SCORE_FOUR_POINTS
+            || $this->playerTwoPoints>=self::GAME_SCORE_FOUR_POINTS)
         {
             $minusResult = $this->playerOnePoints - $this->playerTwoPoints;
             if ($minusResult==1) $gameScore = "Advantage player1";
@@ -61,16 +68,16 @@ class TennisGame1 implements TennisGame
                 else { $gameScore.="-"; $tempScore = $this->playerTwoPoints;}
                 switch($tempScore)
                 {
-                    case 0:
+                    case self::GAME_SCORE_NO_POINTS:
                         $gameScore.="Love";
                         break;
-                    case 1:
+                    case self::GAME_SCORE_ONE_POINT:
                         $gameScore.="Fifteen";
                         break;
-                    case 2:
+                    case self::GAME_SCORE_TWO_POINTS:
                         $gameScore.="Thirty";
                         break;
-                    case 3:
+                    case self::GAME_SCORE_THREE_POINTS:
                         $gameScore.="Forty";
                         break;
                 }
