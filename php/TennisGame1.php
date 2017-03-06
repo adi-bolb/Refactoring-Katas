@@ -1,5 +1,6 @@
 <?php
 require_once './TennisGame.php';
+require 'Player.php';
 
 class TennisGame1 implements TennisGame
 {
@@ -20,9 +21,9 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_FORTY = "Forty";
     const GAME_SCORE_DEUCE = "Deuce";
 
-    private $playerOneName;
-    function getPlayerOneName(){ return $this->playerOneName; }
-    function setPlayerOneName($name){ $this->playerOneName = $name; }
+    private $playerOne;
+    function getPlayerOneName(){ return $this->playerOne->getName(); }
+    function setPlayerOneName($name){ $this->playerOne->setName($name); }
 
     private $playerOnePoints = 0;
 
@@ -31,7 +32,7 @@ class TennisGame1 implements TennisGame
 
     public function TennisGame1($playerOneName, $playerTwoName)
     {
-        $this->setPlayerOneName($playerOneName);
+        $this->playerOne = new Player($playerOneName, 0);
         $this->playerTwoName = $playerTwoName;
     }
 
