@@ -40,16 +40,16 @@ class TennisGame1 implements TennisGame
             switch ($this->playerOnePoints)
             {
                 case self::GAME_SCORE_NO_POINTS:
-                    $gameScore = "Love-All";
+                    $gameScore = "Love". self::SCORE_SEPARATOR . "All";
                     break;
                 case self::GAME_SCORE_ONE_POINT:
-                    $gameScore = "Fifteen-All";
+                    $gameScore = "Fifteen".self::SCORE_SEPARATOR. "All";
                     break;
                 case self::GAME_SCORE_TWO_POINTS:
-                    $gameScore = "Thirty-All";
+                    $gameScore = "Thirty".self::SCORE_SEPARATOR."All";
                     break;
                 case self::GAME_SCORE_THREE_POINTS:
-                    $gameScore = "Forty-All";
+                    $gameScore = "Forty".self::SCORE_SEPARATOR."All";
                     break;
                 default:
                     $gameScore = "Deuce";
