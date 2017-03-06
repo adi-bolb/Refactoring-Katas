@@ -14,9 +14,11 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_MESSAGE_SPACE = " ";
     const GAME_SCORE_MESSAGE_WINNER = "Win for";
 
+    const GAME_SCORE_ALL = "All";
     private $playerOnePoints = 0;
     private $playerTwoPoints = 0;
     private $playerOneName;
+
     private $playerTwoName;
 
     public function TennisGame1($playerOneName, $playerTwoName)
@@ -40,16 +42,16 @@ class TennisGame1 implements TennisGame
             switch ($this->playerOnePoints)
             {
                 case self::GAME_SCORE_NO_POINTS:
-                    $gameScore = "Love". self::SCORE_SEPARATOR . "All";
+                    $gameScore = "Love". self::SCORE_SEPARATOR . self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_ONE_POINT:
-                    $gameScore = "Fifteen".self::SCORE_SEPARATOR. "All";
+                    $gameScore = "Fifteen".self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_TWO_POINTS:
-                    $gameScore = "Thirty".self::SCORE_SEPARATOR."All";
+                    $gameScore = "Thirty".self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 case self::GAME_SCORE_THREE_POINTS:
-                    $gameScore = "Forty".self::SCORE_SEPARATOR."All";
+                    $gameScore = "Forty".self::SCORE_SEPARATOR. self::GAME_SCORE_ALL;
                     break;
                 default:
                     $gameScore = "Deuce";
