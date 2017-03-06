@@ -22,8 +22,7 @@ class TennisGame1 implements TennisGame
             $this->playerTwoPoints += 1;
     }
 
-    public function getScore()
-    {
+    public function getGameScore(){
         $score = "";
         $tempScore=0;
         if ($this->playerOnePoints==$this->playerTwoPoints)
@@ -79,5 +78,11 @@ class TennisGame1 implements TennisGame
             }
         }
         return $score;
+
+    }
+
+    public function getScore()
+    {
+        return $this->getGameScore();
     }
 }
