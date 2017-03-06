@@ -10,6 +10,9 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_THREE_POINTS = 3;
     const GAME_SCORE_FOUR_POINTS = 4;
     const SCORE_SEPARATOR = "-";
+    const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
+    const GAME_SCORE_MESSAGE_SPACE = " ";
+    const GAME_SCORE_MESSAGE_WINNER = "Win for";
 
     private $playerOnePoints = 0;
     private $playerTwoPoints = 0;
@@ -56,11 +59,12 @@ class TennisGame1 implements TennisGame
         else if ($this->playerOnePoints>=self::GAME_SCORE_FOUR_POINTS
             || $this->playerTwoPoints>=self::GAME_SCORE_FOUR_POINTS)
         {
+
             $minusResult = $this->playerOnePoints - $this->playerTwoPoints;
-            if ($minusResult==1) $gameScore = "Advantage player1";
-            else if ($minusResult ==-1) $gameScore = "Advantage player2";
-            else if ($minusResult>=2) $gameScore = "Win for player1";
-            else $gameScore = "Win for player2";
+            if ($minusResult==1) $gameScore = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player1";
+            else if ($minusResult ==-1) $gameScore = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE. "player2";
+            else if ($minusResult>=2) $gameScore = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player1";
+            else $gameScore = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player2";
         }
         else
         {
