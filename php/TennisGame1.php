@@ -35,9 +35,12 @@ class TennisGame1 implements TennisGame
     {
         if ($playerName == $this->playerOneName)
             $this->playerOnePoints += 1;
-        else
+        
+        if($playerName == $this->playerTwoName)
             $this->playerTwoPoints += 1;
     }
+
+
 
     public function getGameScore(){
         $gameScore = "";
