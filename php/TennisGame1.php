@@ -3,6 +3,13 @@ require_once './TennisGame.php';
 
 class TennisGame1 implements TennisGame
 {
+
+    const GAME_SCORE_NO_POINTS = 0;
+    const GAME_SCORE_ONE_POINT = 1;
+    const GAME_SCORE_TWO_POINTS = 2;
+    const GAME_SCORE_THREE_POINTS = 3;
+    const GAME_SCORE_FOUR_POINTS = 4;
+
     private $playerOnePoints = 0;
     private $playerTwoPoints = 0;
     private $playerOneName;
@@ -21,12 +28,6 @@ class TennisGame1 implements TennisGame
         else
             $this->playerTwoPoints += 1;
     }
-
-    const GAME_SCORE_NO_POINTS = 0;
-    const GAME_SCORE_ONE_POINT = 1;
-    const GAME_SCORE_TWO_POINTS = 2;
-    const GAME_SCORE_THREE_POINTS = 3;
-    const GAME_SCORE_FOUR_POINTS = 4;
 
     public function getGameScore(){
         $gameScore = "";
