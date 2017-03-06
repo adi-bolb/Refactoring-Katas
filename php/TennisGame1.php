@@ -5,13 +5,13 @@ class TennisGame1 implements TennisGame
 {
     private $playerOneScore = 0;
     private $playerTwoScore = 0;
-    private $player1Name;
-    private $player2Name;
+    private $playerOneName;
+    private $playerTwoName;
 
-    public function TennisGame1($player1Name, $player2Name)
+    public function TennisGame1($playerOneName, $playerTwoName)
     {
-        $this->player1Name = $player1Name;
-        $this->player2Name = $player2Name;
+        $this->playerOneName = $playerOneName;
+        $this->playerTwoName = $playerTwoName;
     }
 
     public function wonPoint($playerName)
