@@ -9,6 +9,7 @@ class TennisGame1 implements TennisGame
     const GAME_SCORE_TWO_POINTS = 2;
     const GAME_SCORE_THREE_POINTS = 3;
     const GAME_SCORE_FOUR_POINTS = 4;
+    const SCORE_SEPARATOR = "-";
 
     private $playerOnePoints = 0;
     private $playerTwoPoints = 0;
@@ -66,7 +67,7 @@ class TennisGame1 implements TennisGame
             for ($i=1; $i<3; $i++)
             {
                 if ($i==1) $tempScore = $this->playerOnePoints;
-                else { $gameScore.="-"; $tempScore = $this->playerTwoPoints;}
+                else { $gameScore.= self::SCORE_SEPARATOR; $tempScore = $this->playerTwoPoints;}
                 switch($tempScore)
                 {
                     case self::GAME_SCORE_NO_POINTS:
