@@ -1,4 +1,5 @@
 <?php
+include 'TestMaster.php';
 
 /**
  * TennisGame1 test case.

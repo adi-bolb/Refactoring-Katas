@@ -1,5 +1,9 @@
 <?php
 
+include 'TennisGame1.php';
+include 'TennisGame2.php';
+include 'TennisGame3.php';
+
 abstract class TestMaster extends PHPUnit_Framework_TestCase
 {
     /** @var TennisGame */
@@ -14,7 +18,7 @@ abstract class TestMaster extends PHPUnit_Framework_TestCase
             '0-0' => array(0, 0, "Love-All"),
             '1-1' => array(1, 1, "Fifteen-All"),
             '2-2' => array(2, 2, "Thirty-All"),
-            '3-3' => array(3, 3, "Deuce"),
+            '3-3' => array(3, 3, "Forty-All"),
             '4-4' => array(4, 4, "Deuce"),
             '1-0' => array(1, 0, "Fifteen-Love"),
             '0-1' => array(0, 1, "Love-Fifteen"),
