@@ -23,9 +23,9 @@ abstract class TennisGameBuilder
         return $this;
     }
 
-    public function withTennisGameScore()
+    public function withTennisGameScore($tennisGameScore)
     {
-        $this->tennisGameScore = new TennisGameScore();
+        $this->tennisGameScore = $tennisGameScore;
         return $this;
     }
 

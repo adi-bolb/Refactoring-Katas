@@ -82,7 +82,7 @@ class TennisTest extends PHPUnit_Framework_TestCase
 		$this->setVars($player1Score, $player2Score, $expectedScore);
         $tennisGameBuilder = new TennisGame1Builder();
         $game  = $tennisGameBuilder->withPlayerOneName('player1')
-            ->withPlayerTwoName('player2')->withTennisGameScore()->build();
+            ->withPlayerTwoName('player2')->withTennisGameScore(new TennisGameScore())->build();
 		$this->checkAllScores($game);
 	}
 

@@ -17,7 +17,7 @@ class TennisGame1Test extends TestMaster
         parent::setUp();
         $tennisGameBuilder = new TennisGame1Builder();
         $this->_game = $tennisGameBuilder->withPlayerOneName('player1')
-            ->withPlayerTwoName('player2')->withTennisGameScore()->build();
+            ->withPlayerTwoName('player2')->withTennisGameScore(new TennisGameScore())->build();
     }
 
     /**
