@@ -25,13 +25,10 @@ class TennisGame1 implements TennisGame
     private $playerOne;
     private $playerTwo;
 
-    public function TennisGame1($playerOneName, $playerTwoName, BuildPlayer $buildPlayer)
+    public function TennisGame1($playerOne, $playerTwo)
     {
-
-        $this->playerOne = $buildPlayer->withName($playerOneName)
-                                        ->build();
-        $this->playerTwo = $buildPlayer->withName($playerTwoName)
-                                        ->build();
+        $this->playerOne = $playerOne;
+        $this->playerTwo = $playerTwo;
     }
 
     public function wonPoint($playerName)

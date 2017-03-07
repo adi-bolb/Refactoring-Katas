@@ -9,10 +9,15 @@ require_once 'TennisGameBuilder.php';
  */
 class TennisGame1Builder extends TennisGameBuilder
 {
-
     function build()
     {
-        return new TennisGame1($this->playerOneName, $this->playerTwoName, $this->getBuildPlayer());
-    }
+        $buildPlayer = $this->getBuildPlayer();
 
+        $playerOne = $buildPlayer->withName($this->playerOneName)
+                                ->build();
+        $playerTwo = $buildPlayer->withName($this->playerTwoName)
+            ->build();
+
+        return new TennisGame1($playerOne, $playerTwo);
+    }
 }
