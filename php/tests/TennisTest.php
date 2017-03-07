@@ -110,8 +110,10 @@ class TennisTest extends PHPUnit_Framework_TestCase
 
 
 	public function testTennisGameWithInjectedPlayerOne(){
-	    $playerOne = new Player("Gigi", 2);
-        $playerTwo = new Player("Bubu", 0);
+	    $buildPlayer = new BuildPlayer();
+
+	    $playerOne = $buildPlayer->withName("Gigi")->withPoints(2)->build();
+        $playerTwo = $buildPlayer->withName("Bubu")->withPoints(0)->build();
         $tennisGame1 = new TennisGame1ForTests($playerOne, $playerTwo);
 
         $gameScore = $tennisGame1 ->getGameScore();

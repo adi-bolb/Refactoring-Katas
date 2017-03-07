@@ -11,6 +11,9 @@ class BuildPlayer{
     protected $name;
     protected $points = self::DEFAULT_NUMBER_OF_POINTS;
 
+    public function withDefaults(){
+
+    }
 
     public function withName($name)
     {

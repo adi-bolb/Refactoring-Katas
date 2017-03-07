@@ -11,6 +11,6 @@ class TennisGame1Builder extends TennisGameBuilder
 {
     function build()
     {
-        return new TennisGame1($this->playerOneName, $this->playerTwoName);
+        return new TennisGame1($this->playerOneName, $this->playerTwoName, new BuildPlayer());
     }
 }
