@@ -43,13 +43,12 @@ class TennisGame1 implements TennisGame
     }
 
     public function getGameScore(){
-        if ($this->getPlayerOne()->getPoints()==$this->getPlayerTwo()->getPoints())
+        if ($this->playersHaveEqualPoints())
         {
-            return $this->playersHaveEqualPoints();
+            return $this->computeScoreWithPlayersHavingEqualPoints();
         }
 
-        if ($this->getPlayerOne()->getPoints()>=self::GAME_SCORE_FOUR_POINTS
-            || $this->getPlayerTwo()->getPoints()>=self::GAME_SCORE_FOUR_POINTS)
+        if ($this->winnerOrAdvantage())
         {
             return $this->computeWinnerOrAdvantage();
         }
@@ -84,7 +83,7 @@ class TennisGame1 implements TennisGame
     /**
      * @return string
      */
-    private function playersHaveEqualPoints()
+    private function computeScoreWithPlayersHavingEqualPoints()
     {
         switch ($this->getPlayerOne()->getPoints()) {
             case self::GAME_SCORE_NO_POINTS:
@@ -150,6 +149,23 @@ class TennisGame1 implements TennisGame
             }
         }
         return $gameScore;
+    }
+
+    /**
+     * @return bool
+     */
+    private function playersHaveEqualPoints()
+    {
+        return $this->getPlayerOne()->getPoints() == $this->getPlayerTwo()->getPoints();
+    }
+
+    /**
+     * @return bool
+     */
+    private function winnerOrAdvantage()
+    {
+        return $this->getPlayerOne()->getPoints() >= self::GAME_SCORE_FOUR_POINTS
+            || $this->getPlayerTwo()->getPoints() >= self::GAME_SCORE_FOUR_POINTS;
     }
 }
 
