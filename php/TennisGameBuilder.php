@@ -23,10 +23,10 @@ abstract class TennisGameBuilder
         return $this;
     }
 
-    protected function withTennisGameScore()
+    public function withTennisGameScore()
     {
         $this->tennisGameScore = new TennisGameScore();
-        return $this->tennisGameScore;
+        return $this;
     }
 
     abstract function build();
