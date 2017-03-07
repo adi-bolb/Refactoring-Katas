@@ -10,6 +10,8 @@ abstract class TennisGameBuilder
 {
     protected $playerOneName;
     protected $playerTwoName;
+    protected $tennisGameScore;
+
 
     function withPlayerOneName($playerOneName){
         $this->playerOneName = $playerOneName;
@@ -21,10 +23,18 @@ abstract class TennisGameBuilder
         return $this;
     }
 
+    protected function withTennisGameScore()
+    {
+        $this->tennisGameScore = new TennisGameScore();
+        return $this->tennisGameScore;
+    }
+
     abstract function build();
 
     protected function getBuildPlayer()
     {
         return new BuildPlayer();
     }
+
+
 }
