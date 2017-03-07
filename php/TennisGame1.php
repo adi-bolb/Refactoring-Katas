@@ -31,7 +31,8 @@ class TennisGame1 implements TennisGame
         $playerOnePoints = $this->getPlayerOne()->getPoints();
         $playerTwoPoints = $this->getPlayerTwo()->getPoints();
 
-        return TennisGameScore::computeScoreForSingle($playerOnePoints, $playerTwoPoints);
+        $tennisGameScore = new TennisGameScore();
+        return $tennisGameScore->computeScoreForSingle($playerOnePoints, $playerTwoPoints);
 
     }
 

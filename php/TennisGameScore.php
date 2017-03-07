@@ -24,7 +24,7 @@ class TennisGameScore
     const GAME_SCORE_FOUR_POINTS = 4;
     const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
 
-    private static function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
+    private function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {
         switch ($playerOnePoints) {
             case self::GAME_SCORE_NO_POINTS:
@@ -46,7 +46,7 @@ class TennisGameScore
         return $gameScore;
     }
 
-    private static function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints)
     {
         $minusResult = $playerOnePoints - $playerTwoPoints;
         if ($minusResult == 1) $gameScoreTemp = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player1";
@@ -57,7 +57,7 @@ class TennisGameScore
         return $gameScore;
     }
 
-    private static function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
+    private function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
     {
         $gameScore = "";
         for ($i = 1; $i < 3; $i++) {
@@ -87,27 +87,27 @@ class TennisGameScore
         return $gameScore;
     }
 
-    private static function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
+    private function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints == $playerTwoPoints;
     }
 
-    private static function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints >= self::GAME_SCORE_FOUR_POINTS
             || $playerTwoPoints >= self::GAME_SCORE_FOUR_POINTS;
     }
 
-    public static function computeScoreForSingle($playerOnePoints, $playerTwoPoints)
+    public function computeScoreForSingle($playerOnePoints, $playerTwoPoints)
     {
-        if (self::playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)) {
-            return self::computeScoreWithPlayersHavingEqualPoints($playerOnePoints);
+        if ($this->playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)) {
+            return $this->computeScoreWithPlayersHavingEqualPoints($playerOnePoints);
         }
 
-        if (self::winnerOrAdvantage($playerOnePoints, $playerTwoPoints)) {
-            return self::computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints);
+        if ($this->winnerOrAdvantage($playerOnePoints, $playerTwoPoints)) {
+            return $this->computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints);
         }
 
-        return self::computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints);
+        return $this->computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints);
     }
 }
