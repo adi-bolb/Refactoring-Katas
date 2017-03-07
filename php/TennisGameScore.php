@@ -24,7 +24,7 @@ class TennisGameScore
     const GAME_SCORE_FOUR_POINTS = 4;
     const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
 
-    public static function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
+    private static function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {
         switch ($playerOnePoints) {
             case self::GAME_SCORE_NO_POINTS:
@@ -46,7 +46,7 @@ class TennisGameScore
         return $gameScore;
     }
 
-    public static function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private static function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints)
     {
         $minusResult = $playerOnePoints - $playerTwoPoints;
         if ($minusResult == 1) $gameScoreTemp = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player1";
@@ -57,7 +57,7 @@ class TennisGameScore
         return $gameScore;
     }
 
-    public static function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
+    private static function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
     {
         $gameScore = "";
         for ($i = 1; $i < 3; $i++) {
@@ -87,12 +87,12 @@ class TennisGameScore
         return $gameScore;
     }
 
-    public static function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
+    private static function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints == $playerTwoPoints;
     }
 
-    public static function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private static function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints >= self::GAME_SCORE_FOUR_POINTS
             || $playerTwoPoints >= self::GAME_SCORE_FOUR_POINTS;
