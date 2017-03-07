@@ -98,7 +98,7 @@ class SingleTennisGameScore
             || $playerTwoPoints >= self::GAME_SCORE_FOUR_POINTS;
     }
 
-    public function computeScoreForSingle($playerOnePoints, $playerTwoPoints)
+    public function computeScore($playerOnePoints, $playerTwoPoints)
     {
         if ($this->playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)) {
             return $this->computeScoreWithPlayersHavingEqualPoints($playerOnePoints);
