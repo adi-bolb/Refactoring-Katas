@@ -57,11 +57,6 @@ class TennisGame1 implements TennisGame
 
     }
 
-    public function getScore()
-    {
-        return $this->getGameScore();
-    }
-
     private function getPlayerByName($playerName)
     {
         if($this->getPlayerOne()->getName() == $playerName){

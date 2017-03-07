@@ -46,7 +46,7 @@ class TennisGame1Test extends TestMaster
                 $this->_game->wonPoint("player2");
             }
         }
-        $this->assertEquals($expectedResult, $this->_game->getScore());
+        $this->assertEquals($expectedResult, $this->_game->getGameScore());
     }
 }
 
