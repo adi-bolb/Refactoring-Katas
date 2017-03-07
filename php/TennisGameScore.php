@@ -47,24 +47,21 @@ abstract class TennisGameScore
 
     private function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {
-        switch ($playerOnePoints) {
-            case self::GAME_SCORE_NO_POINTS:
-                $gameScore = self::GAME_SCORE_LOVE . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
-                break;
-            case self::GAME_SCORE_ONE_POINT:
-                $gameScore = self::GAME_SCORE_FIFTEEN . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
-                break;
-            case self::GAME_SCORE_TWO_POINTS:
-                $gameScore = self::GAME_SCORE_THIRTY . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
-                break;
-            case self::GAME_SCORE_THREE_POINTS:
-                $gameScore = self::GAME_SCORE_FORTY . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
-                break;
-            default:
-                $gameScore = self::GAME_SCORE_DEUCE;
-                break;
+        // Guard Clause
+        if($playerOnePoints > self::GAME_SCORE_THREE_POINTS){
+            return self::GAME_SCORE_DEUCE;
         }
-        return $gameScore;
+
+        if ($playerOnePoints == self::GAME_SCORE_NO_POINTS) {
+            $gameScore = self::GAME_SCORE_LOVE;
+        } elseif ($playerOnePoints == self::GAME_SCORE_ONE_POINT) {
+            $gameScore = self::GAME_SCORE_FIFTEEN;
+        } elseif ($playerOnePoints == self::GAME_SCORE_TWO_POINTS) {
+            $gameScore = self::GAME_SCORE_THIRTY;
+        } elseif ($playerOnePoints == self::GAME_SCORE_THREE_POINTS) {
+            $gameScore = self::GAME_SCORE_FORTY;
+        }
+        return $gameScore . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL ;
     }
 
     private function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
