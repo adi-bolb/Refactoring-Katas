@@ -1,14 +1,13 @@
 <?php
 
+require_once 'TennisGameScore.php';
 /**
  * Created by PhpStorm.
  * User: adi
  * Date: 3/7/17
- * Time: 12:50 PM
+ * Time: 3:42 PM
  */
-require 'TennisGameScore.php';
-
-class SingleTennisGameScore implements TennisGameScore
+class DoubleTennisGameScore implements TennisGameScore
 {
     private function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {
@@ -32,11 +31,11 @@ class SingleTennisGameScore implements TennisGameScore
         return $gameScore;
     }
 
-    private function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private function computeWinner($playerOnePoints, $playerTwoPoints)
     {
         $minusResult = $playerOnePoints - $playerTwoPoints;
-        if ($minusResult == 1) $gameScoreTemp = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player1";
-        else if ($minusResult == -1) $gameScoreTemp = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player2";
+        if ($minusResult == 1) $gameScoreTemp = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player1";
+        else if ($minusResult == -1) $gameScoreTemp = self::GAME_SCORE_MESSAGE_WINNER. self::GAME_SCORE_MESSAGE_SPACE . "player2";
         else if ($minusResult >= 2) $gameScoreTemp = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player1";
         else $gameScoreTemp = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player2";
         $gameScore = $gameScoreTemp;
@@ -91,7 +90,7 @@ class SingleTennisGameScore implements TennisGameScore
         }
 
         if ($this->winnerOrAdvantage($playerOnePoints, $playerTwoPoints)) {
-            return $this->computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints);
+            return $this->computeWinner($playerOnePoints, $playerTwoPoints);
         }
 
         return $this->computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints);

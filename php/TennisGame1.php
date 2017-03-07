@@ -3,6 +3,7 @@ require_once './TennisGame.php';
 require 'Player.php';
 require 'BuildPlayer.php';
 require 'SingleTennisGameScore.php';
+require 'DoubleTennisGameScore.php';
 
 class TennisGame1 implements TennisGame
 {
