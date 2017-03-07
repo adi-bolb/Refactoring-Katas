@@ -7,7 +7,7 @@ require_once 'TennisGameScore.php';
  * Date: 3/7/17
  * Time: 3:42 PM
  */
-class DoubleTennisGameScore implements TennisGameScore
+class DoubleTennisGameScore extends TennisGameScore
 {
     private function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {

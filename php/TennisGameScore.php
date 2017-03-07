@@ -12,7 +12,7 @@
  * Date: 3/7/17
  * Time: 12:50 PM
  */
-interface TennisGameScore
+abstract class TennisGameScore
 {
     const GAME_SCORE_NO_POINTS = 0;
     const GAME_SCORE_THREE_POINTS = 3;
@@ -30,5 +30,5 @@ interface TennisGameScore
     const GAME_SCORE_FOUR_POINTS = 4;
     const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
 
-    public function computeScore($playerOnePoints, $playerTwoPoints);
+    public abstract function computeScore($playerOnePoints, $playerTwoPoints);
 }

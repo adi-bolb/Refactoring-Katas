@@ -8,7 +8,7 @@
  */
 require 'TennisGameScore.php';
 
-class SingleTennisGameScore implements TennisGameScore
+class SingleTennisGameScore extends TennisGameScore
 {
     private function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {
