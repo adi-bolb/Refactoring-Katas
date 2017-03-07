@@ -80,7 +80,9 @@ class TennisTest extends PHPUnit_Framework_TestCase
 	public function checkAllScoresTennisGame1($player1Score, $player2Score, $expectedScore)
 	{
 		$this->setVars($player1Score, $player2Score, $expectedScore);
-		$game = new TennisGame1("player1", "player2");
+        $tennisGameBuilder = new TennisGame1Builder();
+        $game  = $tennisGameBuilder->withPlayerOneName('player1')
+            ->withPlayerTwoName('player2')->build();
 		$this->checkAllScores($game);
 	}
 

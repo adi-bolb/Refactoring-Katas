@@ -1,18 +1,23 @@
 <?php
 include 'TestMaster.php';
+require_once __DIR__ . '/../TennisGame1Builder.php';
+require_once __DIR__ . '/../TennisGameBuilder.php';
 
 /**
  * TennisGame1 test case.
  */
 class TennisGame1Test extends TestMaster
 {
+
     /**
      * Prepares the environment before running a test.
      */
     protected function setUp()
     {
         parent::setUp();
-        $this->_game = new TennisGame1('player1', 'player2');
+        $tennisGameBuilder = new TennisGame1Builder();
+        $this->_game = $tennisGameBuilder->withPlayerOneName('player1')
+            ->withPlayerTwoName('player2')->build();
     }
 
     /**
