@@ -43,21 +43,18 @@ class TennisGame1 implements TennisGame
     }
 
     public function getGameScore(){
-        $gameScore = "";
         if ($this->getPlayerOne()->getPoints()==$this->getPlayerTwo()->getPoints())
         {
-            $gameScore = $this->playersHaveEqualPoints();
+            return $this->playersHaveEqualPoints();
         }
-        else if ($this->getPlayerOne()->getPoints()>=self::GAME_SCORE_FOUR_POINTS
+
+        if ($this->getPlayerOne()->getPoints()>=self::GAME_SCORE_FOUR_POINTS
             || $this->getPlayerTwo()->getPoints()>=self::GAME_SCORE_FOUR_POINTS)
         {
-            $gameScore = $this->computeWinnerOrAdvantage();
+            return $this->computeWinnerOrAdvantage();
         }
-        else
-        {
-            $gameScore = $this->computeNotWinnerAndNotAdvantage($gameScore);
-        }
-        return $gameScore;
+
+        return  $this->computeNotWinnerAndNotAdvantage();
 
     }
 
@@ -124,14 +121,16 @@ class TennisGame1 implements TennisGame
     }
 
     /**
-     * @param $gameScore
      * @return string
+     * @internal param $gameScore
      */
-    private function computeNotWinnerAndNotAdvantage($gameScore)
+    private function computeNotWinnerAndNotAdvantage()
     {
+        $gameScore ="";
         for ($i = 1; $i < 3; $i++) {
             if ($i == 1) $tempScore = $this->getPlayerOne()->getPoints();
             else {
+
                 $gameScore .= self::GAME_SCORE_SEPARATOR;
                 $tempScore = $this->getPlayerTwo()->getPoints();
             }
