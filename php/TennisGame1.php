@@ -46,17 +46,7 @@ class TennisGame1 implements TennisGame
         $playerOnePoints = $this->getPlayerOne()->getPoints();
         $playerTwoPoints = $this->getPlayerTwo()->getPoints();
 
-        if ($this->playersHaveEqualPoints($playerOnePoints, $playerTwoPoints))
-        {
-            return $this->computeScoreWithPlayersHavingEqualPoints($playerOnePoints);
-        }
-
-        if ($this->winnerOrAdvantage($playerOnePoints, $playerTwoPoints))
-        {
-            return $this->computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints);
-        }
-
-        return  $this->computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints);
+        return $this->computeScoreForSingle($playerOnePoints, $playerTwoPoints);
 
     }
 
@@ -82,7 +72,7 @@ class TennisGame1 implements TennisGame
      * @param $playerOnePoints
      * @return string
      */
-    private function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
+    private static function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {
         switch ($playerOnePoints) {
             case self::GAME_SCORE_NO_POINTS:
@@ -109,7 +99,7 @@ class TennisGame1 implements TennisGame
      * @param $playerTwoPoints
      * @return string
      */
-    private function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private static function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints)
     {
         $minusResult = $playerOnePoints - $playerTwoPoints;
         if ($minusResult == 1) $gameScoreTemp = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player1";
@@ -126,7 +116,7 @@ class TennisGame1 implements TennisGame
      * @return string
      * @internal param $gameScore
      */
-    private function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
+    private static function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
     {
         $gameScore ="";
         for ($i = 1; $i < 3; $i++) {
@@ -162,7 +152,7 @@ class TennisGame1 implements TennisGame
      * @param $playerTwoPoints
      * @return bool
      */
-    private function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
+    private static function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints == $playerTwoPoints;
     }
@@ -172,10 +162,28 @@ class TennisGame1 implements TennisGame
      * @param $playerTwoPoints
      * @return bool
      */
-    private function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private static function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints >= self::GAME_SCORE_FOUR_POINTS
             || $playerTwoPoints >= self::GAME_SCORE_FOUR_POINTS;
+    }
+
+    /**
+     * @param $playerOnePoints
+     * @param $playerTwoPoints
+     * @return string
+     */
+    public static function computeScoreForSingle($playerOnePoints, $playerTwoPoints)
+    {
+        if (self::playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)) {
+            return self::computeScoreWithPlayersHavingEqualPoints($playerOnePoints);
+        }
+
+        if (self::winnerOrAdvantage($playerOnePoints, $playerTwoPoints)) {
+            return self::computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints);
+        }
+
+        return self::computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints);
     }
 }
 
