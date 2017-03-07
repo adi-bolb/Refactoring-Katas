@@ -1,6 +1,7 @@
 <?php
 require_once './TennisGame.php';
 require 'Player.php';
+require 'BuildPlayer.php';
 
 class TennisGame1 implements TennisGame
 {
@@ -26,9 +27,11 @@ class TennisGame1 implements TennisGame
 
     public function TennisGame1($playerOneName, $playerTwoName)
     {
-        $defaultNumberOfPoints = 0;
-        $this->playerOne = new Player($playerOneName, $defaultNumberOfPoints);
-        $this->playerTwo = new Player($playerTwoName, $defaultNumberOfPoints);
+        $buildPlayer = new BuildPlayer();
+        $this->playerOne = $buildPlayer->withName($playerOneName)
+                                        ->build();
+        $this->playerTwo = $buildPlayer->withName($playerTwoName)
+            ->build();
     }
 
     public function wonPoint($playerName)
