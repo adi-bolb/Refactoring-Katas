@@ -22,4 +22,9 @@ abstract class TennisGameBuilder
     }
 
     abstract function build();
+
+    protected function getBuildPlayer()
+    {
+        return new BuildPlayer();
+    }
 }
