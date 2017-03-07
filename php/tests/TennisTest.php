@@ -82,7 +82,7 @@ class TennisTest extends PHPUnit_Framework_TestCase
 		$this->setVars($player1Score, $player2Score, $expectedScore);
         $tennisGameBuilder = new TennisGame1Builder();
         $game  = $tennisGameBuilder->withPlayerOneName('player1')
-            ->withPlayerTwoName('player2')->withTennisGameScore(new TennisGameScore())->build();
+            ->withPlayerTwoName('player2')->withTennisGameScore(new SingleTennisGameScore())->build();
 		$this->checkAllScores($game);
 	}
 
@@ -130,7 +130,7 @@ class TennisGame1ForTests extends TennisGame1{
 
     function __construct($playerOneForTests, $playerTwoForTests)
     {
-        parent::TennisGame1($playerOneForTests, $playerTwoForTests, new TennisGameScore());
+        parent::TennisGame1($playerOneForTests, $playerTwoForTests, new SingleTennisGameScore());
         $this->playerOneForTests = $playerOneForTests;
         $this->playerTwoForTests = $playerTwoForTests;
     }

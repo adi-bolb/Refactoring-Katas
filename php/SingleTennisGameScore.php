@@ -6,7 +6,7 @@
  * Date: 3/7/17
  * Time: 12:50 PM
  */
-class TennisGameScore
+class SingleTennisGameScore
 {
     const GAME_SCORE_NO_POINTS = 0;
     const GAME_SCORE_THREE_POINTS = 3;
