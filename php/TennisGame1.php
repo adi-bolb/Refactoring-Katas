@@ -33,7 +33,7 @@ class TennisGame1 implements TennisGame
 
     public function wonPoint($playerName)
     {
-        $player = $this->getPlayerByName($playerName);
+        $player = $this->buildPlayerWithNameAndDefaultPoints($playerName);
         $this->incrementPointsForPlayer($player);
     }
 
@@ -57,7 +57,7 @@ class TennisGame1 implements TennisGame
 
     }
 
-    private function getPlayerByName($playerName)
+    private function buildPlayerWithNameAndDefaultPoints($playerName)
     {
         if($this->getPlayerOne()->getName() == $playerName){
             return $this->getPlayerOne();
