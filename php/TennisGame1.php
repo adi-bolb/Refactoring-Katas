@@ -10,6 +10,8 @@ class TennisGame1 implements TennisGame
     private $playerOne;
     private $playerTwo;
 
+    private $tennisGameScore;
+
     public function TennisGame1($playerOne, $playerTwo)
     {
         $this->playerOne = $playerOne;
@@ -31,8 +33,8 @@ class TennisGame1 implements TennisGame
         $playerOnePoints = $this->getPlayerOne()->getPoints();
         $playerTwoPoints = $this->getPlayerTwo()->getPoints();
 
-        $tennisGameScore = new TennisGameScore();
-        return $tennisGameScore->computeScoreForSingle($playerOnePoints, $playerTwoPoints);
+        $this->tennisGameScore = new TennisGameScore();
+        return $this->tennisGameScore->computeScoreForSingle($playerOnePoints, $playerTwoPoints);
 
     }
 
