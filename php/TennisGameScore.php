@@ -31,4 +31,67 @@ abstract class TennisGameScore
     const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
 
     public abstract function computeScore($playerOnePoints, $playerTwoPoints);
+
+    protected function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
+    {
+        switch ($playerOnePoints) {
+            case self::GAME_SCORE_NO_POINTS:
+                $gameScore = self::GAME_SCORE_LOVE . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
+                break;
+            case self::GAME_SCORE_ONE_POINT:
+                $gameScore = self::GAME_SCORE_FIFTEEN . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
+                break;
+            case self::GAME_SCORE_TWO_POINTS:
+                $gameScore = self::GAME_SCORE_THIRTY . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
+                break;
+            case self::GAME_SCORE_THREE_POINTS:
+                $gameScore = self::GAME_SCORE_FORTY . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
+                break;
+            default:
+                $gameScore = self::GAME_SCORE_DEUCE;
+                break;
+        }
+        return $gameScore;
+    }
+
+    protected function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
+    {
+        $gameScore = "";
+        for ($i = 1; $i < 3; $i++) {
+            if ($i == 1) {
+
+                $tempScore = $playerOnePoints;
+            } else {
+
+                $gameScore .= self::GAME_SCORE_SEPARATOR;
+                $tempScore = $playerTwoPoints;
+            }
+            switch ($tempScore) {
+                case self::GAME_SCORE_NO_POINTS:
+                    $gameScore .= self::GAME_SCORE_LOVE;
+                    break;
+                case self::GAME_SCORE_ONE_POINT:
+                    $gameScore .= self::GAME_SCORE_FIFTEEN;
+                    break;
+                case self::GAME_SCORE_TWO_POINTS:
+                    $gameScore .= self::GAME_SCORE_THIRTY;
+                    break;
+                case self::GAME_SCORE_THREE_POINTS:
+                    $gameScore .= self::GAME_SCORE_FORTY;
+                    break;
+            }
+        }
+        return $gameScore;
+    }
+
+    protected function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
+    {
+        return $playerOnePoints == $playerTwoPoints;
+    }
+
+    protected function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    {
+        return $playerOnePoints >= self::GAME_SCORE_FOUR_POINTS
+            || $playerTwoPoints >= self::GAME_SCORE_FOUR_POINTS;
+    }
 }
