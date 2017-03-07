@@ -30,9 +30,22 @@ abstract class TennisGameScore
     const GAME_SCORE_FOUR_POINTS = 4;
     const GAME_SCORE_MESSAGE_ADVANTAGE = "Advantage";
 
-    public abstract function computeScore($playerOnePoints, $playerTwoPoints);
+    protected abstract function getAdvantageMessage();
 
-    protected function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
+    public function computeScore($playerOnePoints, $playerTwoPoints)
+    {
+        if ($this->playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)) {
+            return $this->computeScoreWithPlayersHavingEqualPoints($playerOnePoints);
+        }
+
+        if ($this->winnerOrAdvantage($playerOnePoints, $playerTwoPoints)) {
+            return $this->computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints, $this->getAdvantageMessage());
+        }
+
+        return $this->computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints);
+    }
+
+    private function computeScoreWithPlayersHavingEqualPoints($playerOnePoints)
     {
         switch ($playerOnePoints) {
             case self::GAME_SCORE_NO_POINTS:
@@ -54,7 +67,7 @@ abstract class TennisGameScore
         return $gameScore;
     }
 
-    protected function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
+    private function computeNotWinnerAndNotAdvantage($playerOnePoints, $playerTwoPoints)
     {
         $gameScore = "";
         for ($i = 1; $i < 3; $i++) {
@@ -84,14 +97,25 @@ abstract class TennisGameScore
         return $gameScore;
     }
 
-    protected function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
+    private function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints == $playerTwoPoints;
     }
 
-    protected function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
+    private function winnerOrAdvantage($playerOnePoints, $playerTwoPoints)
     {
         return $playerOnePoints >= self::GAME_SCORE_FOUR_POINTS
             || $playerTwoPoints >= self::GAME_SCORE_FOUR_POINTS;
+    }
+
+    private function computeWinnerOrAdvantage($playerOnePoints, $playerTwoPoints, $advantageMessage)
+    {
+        $minusResult = $playerOnePoints - $playerTwoPoints;
+        if ($minusResult == 1) $gameScoreTemp = $advantageMessage . self::GAME_SCORE_MESSAGE_SPACE . "player1";
+        else if ($minusResult == -1) $gameScoreTemp = $advantageMessage . self::GAME_SCORE_MESSAGE_SPACE . "player2";
+        else if ($minusResult >= 2) $gameScoreTemp = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player1";
+        else $gameScoreTemp = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player2";
+        $gameScore = $gameScoreTemp;
+        return $gameScore;
     }
 }
