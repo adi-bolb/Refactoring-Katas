@@ -130,6 +130,7 @@ class TennisGame1ForTests extends TennisGame1{
 
     function __construct($playerOneForTests, $playerTwoForTests)
     {
+        parent::TennisGame1($playerOneForTests, $playerTwoForTests);
         $this->playerOneForTests = $playerOneForTests;
         $this->playerTwoForTests = $playerTwoForTests;
     }
