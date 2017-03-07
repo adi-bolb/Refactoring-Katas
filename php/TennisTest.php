@@ -106,4 +106,46 @@ class TennisTest extends PHPUnit_Framework_TestCase
 		$this->checkAllScores($game);
 	}
 
+
+	public function testTennisGameWithInjectedPlayerOne(){
+	    $playerOne = new Player("Gigi", 2);
+        $playerTwo = new Player("Bubu", 0);
+        $tennisGame1 = new TennisGame1ForTests($playerOne, $playerTwo);
+
+        $gameScore = $tennisGame1 ->getGameScore();
+
+        $this->assertEquals("Thirty-Love", $gameScore);
+    }
+
 }
+
+class TennisGame1ForTests extends TennisGame1{
+
+    private $playerOneForTests;
+    private $playerTwoForTests;
+
+    function __construct($playerOneForTests, $playerTwoForTests)
+    {
+        $this->playerOneForTests = $playerOneForTests;
+        $this->playerTwoForTests = $playerTwoForTests;
+    }
+
+    protected function getPlayerOne(){
+        return $this->playerOneForTests;
+    }
+
+    protected function getPlayerTwo()
+    {
+        return $this->playerTwoForTests;
+    }
+}
+
+
+
+
+
+
+
+
+
+

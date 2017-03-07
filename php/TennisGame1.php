@@ -26,8 +26,9 @@ class TennisGame1 implements TennisGame
 
     public function TennisGame1($playerOneName, $playerTwoName)
     {
-        $this->playerOne = new Player($playerOneName, 0);
-        $this->playerTwo = new Player($playerTwoName, 0);
+        $defaultNumberOfPoints = 0;
+        $this->playerOne = new Player($playerOneName, $defaultNumberOfPoints);
+        $this->playerTwo = new Player($playerTwoName, $defaultNumberOfPoints);
     }
 
     public function wonPoint($playerName)
@@ -43,9 +44,9 @@ class TennisGame1 implements TennisGame
 
     public function getGameScore(){
         $gameScore = "";
-        if ($this->playerOne->getPoints()==$this->playerTwo->getPoints())
+        if ($this->getPlayerOne()->getPoints()==$this->getPlayerTwo()->getPoints())
         {
-            switch ($this->playerOne->getPoints())
+            switch ($this->getPlayerOne()->getPoints())
             {
                 case self::GAME_SCORE_NO_POINTS:
                     $gameScore = self::GAME_SCORE_LOVE . self::GAME_SCORE_SEPARATOR . self::GAME_SCORE_ALL;
@@ -64,11 +65,11 @@ class TennisGame1 implements TennisGame
                     break;
             }
         }
-        else if ($this->playerOne->getPoints()>=self::GAME_SCORE_FOUR_POINTS
-            || $this->playerTwo->getPoints()>=self::GAME_SCORE_FOUR_POINTS)
+        else if ($this->getPlayerOne()->getPoints()>=self::GAME_SCORE_FOUR_POINTS
+            || $this->getPlayerTwo()->getPoints()>=self::GAME_SCORE_FOUR_POINTS)
         {
 
-            $minusResult = $this->playerOne->getPoints()- $this->playerTwo->getPoints();
+            $minusResult = $this->getPlayerOne()->getPoints()- $this->getPlayerTwo()->getPoints();
             if ($minusResult==1) $gameScore = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE . "player1";
             else if ($minusResult ==-1) $gameScore = self::GAME_SCORE_MESSAGE_ADVANTAGE . self::GAME_SCORE_MESSAGE_SPACE. "player2";
             else if ($minusResult>=2) $gameScore = self::GAME_SCORE_MESSAGE_WINNER . self::GAME_SCORE_MESSAGE_SPACE . "player1";
@@ -78,8 +79,8 @@ class TennisGame1 implements TennisGame
         {
             for ($i=1; $i<3; $i++)
             {
-                if ($i==1) $tempScore = $this->playerOne->getPoints();
-                else { $gameScore.= self::GAME_SCORE_SEPARATOR; $tempScore = $this->playerTwo->getPoints();}
+                if ($i==1) $tempScore = $this->getPlayerOne()->getPoints();
+                else { $gameScore.= self::GAME_SCORE_SEPARATOR; $tempScore = $this->getPlayerTwo()->getPoints();}
                 switch($tempScore)
                 {
                     case self::GAME_SCORE_NO_POINTS:
@@ -108,9 +109,59 @@ class TennisGame1 implements TennisGame
 
     private function getPlayerByName($playerName)
     {
-        if($this->playerOne->getName() == $playerName){
-            return $this->playerOne;
+        if($this->getPlayerOne()->getName() == $playerName){
+            return $this->getPlayerOne();
         }
+        return $this->getPlayerTwo();
+    }
+
+    protected function getPlayerTwo()
+    {
         return $this->playerTwo;
     }
+
+    protected function getPlayerOne()
+    {
+        return $this->playerOne;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
