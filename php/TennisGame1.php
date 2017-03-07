@@ -43,7 +43,7 @@ class TennisGame1 implements TennisGame
     }
 
     public function getGameScore(){
-        if ($this->playersHaveEqualPoints())
+        if ($this->playersHaveEqualPoints($this->getPlayerOne()->getPoints(), $this->getPlayerTwo()->getPoints()))
         {
             return $this->computeScoreWithPlayersHavingEqualPoints();
         }
@@ -147,11 +147,13 @@ class TennisGame1 implements TennisGame
     }
 
     /**
+     * @param $playerOnePoints
+     * @param $playerTwoPoints
      * @return bool
      */
-    private function playersHaveEqualPoints()
+    private function playersHaveEqualPoints($playerOnePoints, $playerTwoPoints)
     {
-        return $this->getPlayerOne()->getPoints() == $this->getPlayerTwo()->getPoints();
+        return $playerOnePoints == $playerTwoPoints;
     }
 
     /**
