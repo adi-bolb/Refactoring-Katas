@@ -18,6 +18,6 @@ class TennisGame1Builder extends TennisGameBuilder
         $playerTwo = $buildPlayer->withName($this->playerTwoName)
             ->build();
 
-        return new TennisGame1($playerOne, $playerTwo);
+        return new TennisGame1($playerOne, $playerTwo, new TennisGameScore());
     }
 }

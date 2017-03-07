@@ -12,11 +12,11 @@ class TennisGame1 implements TennisGame
 
     private $tennisGameScore;
 
-    public function TennisGame1($playerOne, $playerTwo)
+    public function TennisGame1($playerOne, $playerTwo, $tennisGameScore)
     {
         $this->playerOne = $playerOne;
         $this->playerTwo = $playerTwo;
-        $this->tennisGameScore = new TennisGameScore();
+        $this->tennisGameScore = $tennisGameScore;
     }
 
     public function wonPoint($playerName)
