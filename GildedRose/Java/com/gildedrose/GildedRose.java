@@ -1,5 +1,7 @@
 package com.gildedrose;
 class GildedRose {
+    public static final int QUALITY_DELTA = 1;
+    public static final int MAX_QUALITY = 50;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -8,57 +10,62 @@ class GildedRose {
 
     public void updateQuality() {
         for (int itemIndex = 0; itemIndex < items.length; itemIndex++) {
-            String message = "Sulfuras, Hand of Ragnaros";
-            String backstagePassMessage = "Backstage passes to a TAFKAL80ETC concert";
-            if (!items[itemIndex].name.equals("Aged Brie")
-                    && !items[itemIndex].name.equals(backstagePassMessage)) {
-                if (items[itemIndex].quality > 0 && !items[itemIndex].name.equals(message)) {
-                    items[itemIndex].quality = items[itemIndex].quality - 1;
+            String messageSulfuras = "Sulfuras, Hand of Ragnaros";
+            String messageBackstagePass = "Backstage passes to a TAFKAL80ETC concert";
+            String messageAgedBrie = "Aged Brie";
+            if (!items[itemIndex].name.equals(messageAgedBrie)
+                    && !items[itemIndex].name.equals(messageBackstagePass)) {
+                if (items[itemIndex].quality > 0 && !items[itemIndex].name.equals(messageSulfuras)) {
+                    decrementQuality(itemIndex, QUALITY_DELTA);
                 }
             } else {
-                if (items[itemIndex].quality < 50) {
-                    incrementQuality(itemIndex);
+                if (items[itemIndex].quality < MAX_QUALITY) {
+                    incrementQuality(itemIndex, QUALITY_DELTA);
 
-                    if (items[itemIndex].name.equals(backstagePassMessage)) {
+                    if (items[itemIndex].name.equals(messageBackstagePass)) {
                         if (items[itemIndex].sellIn < 11) {
-                            if (items[itemIndex].quality < 50) {
-                                incrementQuality(itemIndex);
-                            }
+                            incrementWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
                         }
 
                         if (items[itemIndex].sellIn < 6) {
-                            if (items[itemIndex].quality < 50) {
-                                incrementQuality(itemIndex);
-                            }
+                            incrementWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
                         }
                     }
                 }
             }
 
-            if (!items[itemIndex].name.equals(message)) {
-                items[itemIndex].sellIn = items[itemIndex].sellIn - 1;
+            if (!items[itemIndex].name.equals(messageSulfuras)) {
+                items[itemIndex].sellIn = items[itemIndex].sellIn - QUALITY_DELTA;
             }
 
             if (items[itemIndex].sellIn < 0) {
 
-                if (!items[itemIndex].name.equals("Aged Brie")) {
-                    if (!items[itemIndex].name.equals(backstagePassMessage)) {
+                if (!items[itemIndex].name.equals(messageAgedBrie)) {
+                    if (!items[itemIndex].name.equals(messageBackstagePass)) {
                         if (items[itemIndex].quality > 0) {
-                            if (!items[itemIndex].name.equals(message)) {
-                                items[itemIndex].quality = items[itemIndex].quality - 1;
+                            if (!items[itemIndex].name.equals(messageSulfuras)) {
+                                decrementQuality(itemIndex, QUALITY_DELTA);
                             }
                         }
-                    } if(items[itemIndex].name.equals(backstagePassMessage)){
-                        items[itemIndex].quality = items[itemIndex].quality - items[itemIndex].quality;
+                    } if(items[itemIndex].name.equals(messageBackstagePass)){
+                        decrementQuality(itemIndex, items[itemIndex].quality);
                     }
-                } else if (items[itemIndex].quality < 50) {
-                    incrementQuality(itemIndex);
-                }
+                } else incrementWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
             }
         }
     }
 
-    private void incrementQuality(int itemIndex) {
-        items[itemIndex].quality = items[itemIndex].quality + 1;
+    private void incrementWhenLessThanMaxQuality(int itemIndex, int maxQuality, int qualityDelta) {
+        if (items[itemIndex].quality < maxQuality) {
+            incrementQuality(itemIndex, qualityDelta);
+        }
+    }
+
+    private void decrementQuality(int itemIndex, int qualityDelta) {
+        items[itemIndex].quality = items[itemIndex].quality - qualityDelta;
+    }
+
+    private void incrementQuality(int itemIndex, int qualityDelta) {
+        items[itemIndex].quality = items[itemIndex].quality + qualityDelta;
     }
 }
