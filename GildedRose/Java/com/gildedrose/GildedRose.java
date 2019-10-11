@@ -13,24 +13,21 @@ class GildedRose {
             String messageSulfuras = "Sulfuras, Hand of Ragnaros";
             String messageBackstagePass = "Backstage passes to a TAFKAL80ETC concert";
             String messageAgedBrie = "Aged Brie";
-            if (!items[itemIndex].name.equals(messageAgedBrie)
-                    && !items[itemIndex].name.equals(messageBackstagePass)) {
-                if (items[itemIndex].quality > 0 && !items[itemIndex].name.equals(messageSulfuras)) {
-                    decrementQuality(itemIndex, QUALITY_DELTA);
+            if (!items[itemIndex].name.equals(messageAgedBrie)) {
+                if (!items[itemIndex].name.equals(messageBackstagePass)) {
+                    updateQualityWhenNotSulfuras(itemIndex, messageSulfuras);
+                } else {
+                    if (items[itemIndex].quality < MAX_QUALITY) {
+                        incrementQuality(itemIndex, QUALITY_DELTA);
+
+                        updateQualityWhenBackstagePass(itemIndex, messageBackstagePass);
+                    }
                 }
             } else {
                 if (items[itemIndex].quality < MAX_QUALITY) {
                     incrementQuality(itemIndex, QUALITY_DELTA);
 
-                    if (items[itemIndex].name.equals(messageBackstagePass)) {
-                        if (items[itemIndex].sellIn < 11) {
-                            incrementWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
-                        }
-
-                        if (items[itemIndex].sellIn < 6) {
-                            incrementWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
-                        }
-                    }
+                    updateQualityWhenBackstagePass(itemIndex, messageBackstagePass);
                 }
             }
 
@@ -42,20 +39,40 @@ class GildedRose {
 
                 if (!items[itemIndex].name.equals(messageAgedBrie)) {
                     if (!items[itemIndex].name.equals(messageBackstagePass)) {
-                        if (items[itemIndex].quality > 0) {
-                            if (!items[itemIndex].name.equals(messageSulfuras)) {
-                                decrementQuality(itemIndex, QUALITY_DELTA);
-                            }
-                        }
+                        updateQualityWhenNotSulfuras(itemIndex, messageSulfuras);
                     } if(items[itemIndex].name.equals(messageBackstagePass)){
                         decrementQuality(itemIndex, items[itemIndex].quality);
                     }
-                } else incrementWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
+                } else incrementQualityWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
             }
         }
     }
 
-    private void incrementWhenLessThanMaxQuality(int itemIndex, int maxQuality, int qualityDelta) {
+    private void updateQualityWhenBackstagePass(int itemIndex, String messageBackstagePass) {
+        if (items[itemIndex].name.equals(messageBackstagePass)) {
+            if (items[itemIndex].sellIn < 11) {
+                incrementQualityWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
+            }
+
+            if (items[itemIndex].sellIn < 6) {
+                incrementQualityWhenLessThanMaxQuality(itemIndex, MAX_QUALITY, QUALITY_DELTA);
+            }
+        }
+    }
+
+    private void updateQualityWhenNotSulfuras(int itemIndex, String messageSulfuras) {
+        if (!items[itemIndex].name.equals(messageSulfuras)) {
+            decrementQualityWhenGreaterThanZeroQuality(itemIndex);
+        }
+    }
+
+    private void decrementQualityWhenGreaterThanZeroQuality(int itemIndex) {
+        if (items[itemIndex].quality > 0) {
+            decrementQuality(itemIndex, QUALITY_DELTA);
+        }
+    }
+
+    private void incrementQualityWhenLessThanMaxQuality(int itemIndex, int maxQuality, int qualityDelta) {
         if (items[itemIndex].quality < maxQuality) {
             incrementQuality(itemIndex, qualityDelta);
         }
