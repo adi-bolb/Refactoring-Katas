@@ -51,17 +51,20 @@ class TennisGame1:
         points_advantage_player_one = 1
         points_advantage_player_two = -1
 
+        def win_for(player):
+            return "Win for " + player.name
+
         if points_difference == points_advantage_player_one:
-            current_game_score = "Advantage " + self.player_one.name
+            return "Advantage " + self.player_one.name
         # player two
         elif points_difference == points_advantage_player_two:
-            current_game_score = "Advantage " + self.player_two.name
+            return "Advantage " + self.player_two.name
         # player one
         elif points_difference >= points_difference_for_player_one_win:
-            current_game_score = "Win for " + self.player_one.name
+            return win_for(self.player_one)
         # player two
         else:
-            current_game_score = "Win for " + self.player_two.name
+            return win_for(self.player_two)
         return current_game_score
 
     def get_game_score_for_equal_points(self):
