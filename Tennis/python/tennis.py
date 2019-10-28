@@ -1,32 +1,42 @@
 # -*- coding: utf-8 -*-
 
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.points = 0
+
+    def pointWon(self):
+        self.points+=1;
+
 class TennisGame1:
 
     def __init__(self, player_one_name, player_two_name):
-        self.player_one_name = player_one_name
-        self.player_two_name = player_two_name
-        self.player_one_points = 0
-        self.player_two_points = 0
+        self.player_one = Player(player_one_name)
+        self.player_two = Player(player_two_name)
+        self.player_one_name = self.player_one.name;
+        self.player_two_name = self.player_two.name;
+        self.player_one_points = self.player_one.points;
+        self.player_two_points = self.player_two.points;
 
     def increment_point_counter(self, player_name):
-        if player_name == self.player_one_name:
-            self.player_one_points += 1
+        if player_name == self.player_one.name:
+            self.player_one.points += 1
         else:
-            self.player_two_points += 1
+            self.player_two.points += 1
 
     def get_game_score(self):
         current_game_score = ""
         temp_player_points=0
         points_for_advantage_or_win = 4
-        if self.player_one_points==self.player_two_points:
+        if self.player_one.points==self.player_two.points:
             current_game_score = {
                 0 : "Love-All",
                 1 : "Fifteen-All",
                 2 : "Thirty-All",
                 3 : "Forty-All",
-            }.get(self.player_one_points, "Deuce")
-        elif self.player_one_points >= points_for_advantage_or_win or self.player_two_points >= points_for_advantage_or_win:
-            points_difference = self.player_one_points - self.player_two_points
+            }.get(self.player_one.points, "Deuce")
+        elif self.player_one.points >= points_for_advantage_or_win or self.player_two.points >= points_for_advantage_or_win:
+            points_difference = self.player_one.points - self.player_two.points
             points_difference_for_player_one_win = 2
             # player one
             points_advantage_player_one = 1
@@ -48,10 +58,10 @@ class TennisGame1:
             maximum_points_before_advantage = 3
             for points_before_advantage in range(minimum_points_before_advantage, maximum_points_before_advantage):
                 if (points_before_advantage==1):
-                    temp_player_points = self.player_one_points
+                    temp_player_points = self.player_one.points
                 else:
                     current_game_score+="-"
-                    temp_player_points = self.player_two_points
+                    temp_player_points = self.player_two.points
                 current_game_score += {
                     0 : "Love",
                     1 : "Fifteen",
