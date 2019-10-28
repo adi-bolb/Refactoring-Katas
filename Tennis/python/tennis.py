@@ -16,9 +16,9 @@ class TennisGame1:
 
     def increment_point_counter(self, player_name):
         if player_name == self.player_one.name:
-            self.player_one.points += 1
+            self.player_one.pointWon()
         else:
-            self.player_two.points += 1
+            self.player_two.pointWon()
 
     def get_game_score(self):
         current_game_score = ""
