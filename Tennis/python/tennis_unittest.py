@@ -2,13 +2,13 @@
 
 import unittest
 
-from tennis import TennisGame1, TennisGame2, TennisGame3
+from tennis import TennisGame1, TennisGame2, TennisGame3, Player
 
 test_cases = [
     (0, 0, "Love-All", 'player1', 'player2'),
     (1, 1, "Fifteen-All", 'player1', 'player2'),
     (2, 2, "Thirty-All", 'player1', 'player2'),
-    (3, 3, "Forty-All", 'player1', 'player2'),
+    (3, 3, "Deuce", 'player1', 'player2'),
     (4, 4, "Deuce", 'player1', 'player2'),
 
     (1, 0, "Fifteen-Love", 'player1', 'player2'),
@@ -52,7 +52,9 @@ test_cases = [
     ]
 
 def play_game(TennisGame, p1Points, p2Points, p1Name, p2Name):
-    game = TennisGame(p1Name, p2Name)
+    player_one = Player(p1Name)
+    player_two = Player(p2Name)
+    game = TennisGame(player_one, player_two)
     for i in range(max(p1Points, p2Points)):
         if i < p1Points:
             game.player_one.pointWon()

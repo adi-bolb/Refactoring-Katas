@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+ENGLISH_POINTS_TO_SCORE = {
+    0: "Love",
+    1: "Fifteen",
+    2: "Thirty",
+    3: "Forty",
+}
+
 
 class Player:
     def __init__(self, name):
@@ -9,56 +16,59 @@ class Player:
         self.points+=1;
 
 class TennisGame1:
-
-    def __init__(self, player_one_name, player_two_name):
-        self.player_one = Player(player_one_name)
-        self.player_two = Player(player_two_name)
+    def __init__(self, player_one, player_two):
+        self.player_one = player_one
+        self.player_two = player_two
 
     def get_game_score(self):
-        current_game_score = ""
-        temp_player_points=0
         points_for_advantage_or_win = 4
         if self.player_one.points==self.player_two.points:
-            current_game_score = {
-                0 : "Love-All",
-                1 : "Fifteen-All",
-                2 : "Thirty-All",
-                3 : "Forty-All",
-            }.get(self.player_one.points, "Deuce")
-        elif self.player_one.points >= points_for_advantage_or_win or self.player_two.points >= points_for_advantage_or_win:
-            points_difference = self.player_one.points - self.player_two.points
-            points_difference_for_player_one_win = 2
-            # player one
-            points_advantage_player_one = 1
-            poins_advantage_player_two = -1
-            if points_difference== points_advantage_player_one:
-                current_game_score ="Advantage " + self.player_one.name
-            #player two
-            elif points_difference == poins_advantage_player_two:
-                current_game_score ="Advantage " + self.player_two.name
-            #player one
-            elif points_difference>= points_difference_for_player_one_win:
-                current_game_score = "Win for " + self.player_one.name
-            #player two
-            else:
-                current_game_score ="Win for " + self.player_two.name
+            return self.get_game_score_for_equal_points()
+        elif self.player_one.points >= points_for_advantage_or_win \
+                or self.player_two.points >= points_for_advantage_or_win:
+            return self.get_game_score_for_advantage()
         else:
-            # TODO: Give a better name to the variable
-            minimum_points_before_advantage = 1
-            maximum_points_before_advantage = 3
-            for points_before_advantage in range(minimum_points_before_advantage, maximum_points_before_advantage):
-                if (points_before_advantage==1):
-                    temp_player_points = self.player_one.points
-                else:
-                    current_game_score+="-"
-                    temp_player_points = self.player_two.points
-                current_game_score += {
-                    0 : "Love",
-                    1 : "Fifteen",
-                    2 : "Thirty",
-                    3 : "Forty",
-                }[temp_player_points]
+            return self.get_game_score_for_before_advantage()
+
+    def get_game_score_for_before_advantage(self):
+        current_game_score = "";
+        # TODO: Give a better name to the variable
+        minimum_points_before_advantage = 1
+        maximum_points_before_advantage = 3
+        for points_before_advantage in range(minimum_points_before_advantage, maximum_points_before_advantage):
+            if (points_before_advantage == 1):
+                temp_player_points = self.player_one.points
+            else:
+                current_game_score += "-"
+                temp_player_points = self.player_two.points
+            current_game_score += ENGLISH_POINTS_TO_SCORE[temp_player_points]
         return current_game_score
+
+    def get_game_score_for_advantage(self):
+        points_difference = self.player_one.points - self.player_two.points
+        points_difference_for_player_one_win = 2
+        # player one
+        points_advantage_player_one = 1
+        points_advantage_player_two = -1
+
+        if points_difference == points_advantage_player_one:
+            current_game_score = "Advantage " + self.player_one.name
+        # player two
+        elif points_difference == points_advantage_player_two:
+            current_game_score = "Advantage " + self.player_two.name
+        # player one
+        elif points_difference >= points_difference_for_player_one_win:
+            current_game_score = "Win for " + self.player_one.name
+        # player two
+        else:
+            current_game_score = "Win for " + self.player_two.name
+        return current_game_score
+
+    def get_game_score_for_equal_points(self):
+        if self.player_one.points >=3:
+            return "Deuce"
+        current_game_score = ENGLISH_POINTS_TO_SCORE.get(self.player_one.points)
+        return current_game_score + "-All"
 
 
 class TennisGame2:
