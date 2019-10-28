@@ -7,13 +7,13 @@ class TennisGame1:
         self.player2Name = player2Name
         self.p1points = 0
         self.p2points = 0
-        
-    def won_point(self, playerName):
+
+    def increment_point_counter(self, playerName):
         if playerName == self.player1Name:
             self.p1points += 1
         else:
             self.p2points += 1
-    
+
     def score(self):
         result = ""
         tempScore=0
@@ -57,7 +57,7 @@ class TennisGame2:
         self.p1points = 0
         self.p2points = 0
         
-    def won_point(self, playerName):
+    def increment_point_counter(self, playerName):
         if playerName == self.player1Name:
             self.P1Score()
         else:
@@ -157,7 +157,7 @@ class TennisGame3:
         self.p1 = 0
         self.p2 = 0
         
-    def won_point(self, n):
+    def increment_point_counter(self, n):
         if n == self.p1N:
             self.p1 += 1
         else:
