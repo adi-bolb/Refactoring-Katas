@@ -26,7 +26,7 @@ class TennisGame1:
             return self.get_game_score_for_equal_points()
         elif self.player_one.points >= points_for_advantage_or_win \
                 or self.player_two.points >= points_for_advantage_or_win:
-            return self.get_game_score_for_advantage()
+            return self.get_game_score_for_advantage_and_win()
         else:
             return self.get_game_score_for_before_advantage()
 
@@ -44,30 +44,29 @@ class TennisGame1:
             current_game_score += ENGLISH_POINTS_TO_SCORE[temp_player_points]
         return current_game_score
 
-    def get_game_score_for_advantage(self):
-        points_difference = self.player_one.points - self.player_two.points
-        points_difference_for_player_one_win = 2
-        # player one
-        points_advantage_player_one = 1
-        points_advantage_player_two = -1
-
+    def get_game_score_for_advantage_and_win(self):
         def win_for(player):
             return "Win for " + player.name
+
         def advantage_for(player):
             return "Advantage " + player.name
 
-        if points_difference == points_advantage_player_one:
-            return advantage_for(self.player_one)
-        # player two
-        elif points_difference == points_advantage_player_two:
-            return advantage_for(self.player_two)
-        # player one
-        elif points_difference >= points_difference_for_player_one_win:
-            return win_for(self.player_one)
-        # player two
-        else:
-            return win_for(self.player_two)
-        return current_game_score
+        def is_advantage():
+            return (self.player_one.points >= 3
+                    and self.player_two.points >= 3
+                    and abs(player_one_points_ahead()) == 1)
+
+        def player_one_points_ahead():
+            return self.player_one.points - self.player_two.points
+
+        def player_with_highest_points():
+            if self.player_one.points > self.player_two.points:
+                return self.player_one
+            return self.player_two
+
+        if is_advantage():
+            return advantage_for(player_with_highest_points())
+        return win_for(player_with_highest_points())
 
     def get_game_score_for_equal_points(self):
         if self.player_one.points >=3:
