@@ -53,12 +53,14 @@ class TennisGame1:
 
         def win_for(player):
             return "Win for " + player.name
+        def advantage_for(player):
+            return "Advantage " + player.name
 
         if points_difference == points_advantage_player_one:
-            return "Advantage " + self.player_one.name
+            return advantage_for(self.player_one)
         # player two
         elif points_difference == points_advantage_player_two:
-            return "Advantage " + self.player_two.name
+            return advantage_for(self.player_two)
         # player one
         elif points_difference >= points_difference_for_player_one_win:
             return win_for(self.player_one)
