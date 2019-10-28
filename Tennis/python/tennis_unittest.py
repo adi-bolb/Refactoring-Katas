@@ -55,9 +55,9 @@ def play_game(TennisGame, p1Points, p2Points, p1Name, p2Name):
     game = TennisGame(p1Name, p2Name)
     for i in range(max(p1Points, p2Points)):
         if i < p1Points:
-            game.increment_point_counter(p1Name)
+            game.player_one.pointWon()
         if i < p2Points:
-            game.increment_point_counter(p2Name)
+            game.player_two.pointWon()
     return game
 
 class TestTennis(unittest.TestCase):
