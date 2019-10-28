@@ -2,52 +2,55 @@
 
 class TennisGame1:
 
-    def __init__(self, player1Name, player2Name):
-        self.player1Name = player1Name
-        self.player2Name = player2Name
-        self.p1points = 0
-        self.p2points = 0
+    def __init__(self, player_one_name, player_two_name):
+        self.player_one_name = player_one_name
+        self.player_two_name = player_two_name
+        self.player_one_points = 0
+        self.player_two_points = 0
 
-    def increment_point_counter(self, playerName):
-        if playerName == self.player1Name:
-            self.p1points += 1
+    def increment_point_counter(self, player_name):
+        if player_name == self.player_one_name:
+            self.player_one_points += 1
         else:
-            self.p2points += 1
+            self.player_two_points += 1
 
-    def score(self):
-        result = ""
-        tempScore=0
-        if (self.p1points==self.p2points):
-            result = {
+    def get_game_score(self):
+        current_game_score = ""
+        temp_player_points=0
+        if self.player_one_points==self.player_two_points:
+            current_game_score = {
                 0 : "Love-All",
                 1 : "Fifteen-All",
                 2 : "Thirty-All",
                 3 : "Forty-All",
-            }.get(self.p1points, "Deuce")
-        elif (self.p1points>=4 or self.p2points>=4):
-            minusResult = self.p1points-self.p2points
-            if (minusResult==1):
-                result ="Advantage " + self.player1Name
-            elif (minusResult ==-1):
-                result ="Advantage " + self.player2Name
-            elif (minusResult>=2):
-                result = "Win for " + self.player1Name
+            }.get(self.player_one_points, "Deuce")
+        elif self.player_one_points >= 4 or self.player_two_points >= 4:
+            points_difference = self.player_one_points - self.player_two_points
+            if points_difference==1:
+                current_game_score ="Advantage " + self.player_one_name
+            elif points_difference ==-1:
+                current_game_score ="Advantage " + self.player_two_name
+            elif points_difference>=2:
+                current_game_score = "Win for " + self.player_one_name
             else:
-                result ="Win for " + self.player2Name
+                current_game_score ="Win for " + self.player_two_name
         else:
-            for i in range(1,3):
-                if (i==1):
-                    tempScore = self.p1points
+            # TODO: Give a better name to the variable
+            minimum_points_before_advantage = 1
+            maximum_points_before_advantage = 3
+            for points_before_advantage in range(minimum_points_before_advantage, maximum_points_before_advantage):
+                if (points_before_advantage==1):
+                    temp_player_points = self.player_one_points
                 else:
-                    result+="-"
-                    tempScore = self.p2points
-                result += {
+                    current_game_score+="-"
+                    temp_player_points = self.player_two_points
+                current_game_score += {
                     0 : "Love",
                     1 : "Fifteen",
                     2 : "Thirty",
                     3 : "Forty",
-                }[tempScore]
-        return result
+                }[temp_player_points]
+        return current_game_score
 
 
 class TennisGame2:
@@ -128,7 +131,7 @@ class TennisGame2:
         
         if (self.p2points > self.p1points and self.p1points >= 3):
             result = "Advantage " + self.player2Name
-        
+
         if (self.p1points>=4 and self.p2points>=0 and (self.p1points-self.p2points)>=2):
             result = "Win for " + self.player1Name
         if (self.p2points>=4 and self.p1points>=0 and (self.p2points-self.p1points)>=2):
@@ -157,7 +160,7 @@ class TennisGame3:
         self.p1 = 0
         self.p2 = 0
         
-    def increment_point_counter(self, n):
+    def increment_point_counter_for_player(self, n):
         if n == self.p1N:
             self.p1 += 1
         else:
