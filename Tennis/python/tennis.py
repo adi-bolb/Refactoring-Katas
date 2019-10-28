@@ -13,10 +13,6 @@ class TennisGame1:
     def __init__(self, player_one_name, player_two_name):
         self.player_one = Player(player_one_name)
         self.player_two = Player(player_two_name)
-        self.player_one_name = self.player_one.name;
-        self.player_two_name = self.player_two.name;
-        self.player_one_points = self.player_one.points;
-        self.player_two_points = self.player_two.points;
 
     def increment_point_counter(self, player_name):
         if player_name == self.player_one.name:
@@ -42,16 +38,16 @@ class TennisGame1:
             points_advantage_player_one = 1
             poins_advantage_player_two = -1
             if points_difference== points_advantage_player_one:
-                current_game_score ="Advantage " + self.player_one_name
+                current_game_score ="Advantage " + self.player_one.name
             #player two
             elif points_difference == poins_advantage_player_two:
-                current_game_score ="Advantage " + self.player_two_name
+                current_game_score ="Advantage " + self.player_two.name
             #player one
             elif points_difference>= points_difference_for_player_one_win:
-                current_game_score = "Win for " + self.player_one_name
+                current_game_score = "Win for " + self.player_one.name
             #player two
             else:
-                current_game_score ="Win for " + self.player_two_name
+                current_game_score ="Win for " + self.player_two.name
         else:
             # TODO: Give a better name to the variable
             minimum_points_before_advantage = 1
