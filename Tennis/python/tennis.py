@@ -17,6 +17,7 @@ class TennisGame1:
     def get_game_score(self):
         current_game_score = ""
         temp_player_points=0
+        points_for_advantage_or_win = 4
         if self.player_one_points==self.player_two_points:
             current_game_score = {
                 0 : "Love-All",
@@ -24,14 +25,21 @@ class TennisGame1:
                 2 : "Thirty-All",
                 3 : "Forty-All",
             }.get(self.player_one_points, "Deuce")
-        elif self.player_one_points >= 4 or self.player_two_points >= 4:
+        elif self.player_one_points >= points_for_advantage_or_win or self.player_two_points >= points_for_advantage_or_win:
             points_difference = self.player_one_points - self.player_two_points
-            if points_difference==1:
+            points_difference_for_player_one_win = 2
+            # player one
+            points_advantage_player_one = 1
+            poins_advantage_player_two = -1
+            if points_difference== points_advantage_player_one:
                 current_game_score ="Advantage " + self.player_one_name
-            elif points_difference ==-1:
+            #player two
+            elif points_difference == poins_advantage_player_two:
                 current_game_score ="Advantage " + self.player_two_name
-            elif points_difference>=2:
+            #player one
+            elif points_difference>= points_difference_for_player_one_win:
                 current_game_score = "Win for " + self.player_one_name
+            #player two
             else:
                 current_game_score ="Win for " + self.player_two_name
         else:
