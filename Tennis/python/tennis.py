@@ -31,18 +31,7 @@ class TennisGame1:
             return self.get_game_score_for_before_advantage()
 
     def get_game_score_for_before_advantage(self):
-        current_game_score = "";
-        # TODO: Give a better name to the variable
-        minimum_points_before_advantage = 1
-        maximum_points_before_advantage = 3
-        for points_before_advantage in range(minimum_points_before_advantage, maximum_points_before_advantage):
-            if (points_before_advantage == 1):
-                temp_player_points = self.player_one.points
-            else:
-                current_game_score += "-"
-                temp_player_points = self.player_two.points
-            current_game_score += ENGLISH_POINTS_TO_SCORE[temp_player_points]
-        return current_game_score
+        return ENGLISH_POINTS_TO_SCORE[self.player_one.points]+ "-" + ENGLISH_POINTS_TO_SCORE[self.player_two.points]
 
     def get_game_score_for_advantage_and_win(self):
         def win_for(player):
